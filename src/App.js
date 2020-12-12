@@ -273,7 +273,7 @@ class App extends React.Component {
               </table>
             </div>
           )}
-          {Object.keys(this.state.genreDetails).length !== 0 && 
+          {Object.keys(MoviesList).length !== 0 && 
             <table border="1">
               <thead>
                 <tr>
@@ -283,7 +283,7 @@ class App extends React.Component {
               </thead>
 
               <tbody>
-                {Object.entries(this.state.genreDetails).map(([key, value]) => {
+                {Object.entries(MoviesList).map(([key, value]) => {
                     return (
                       <tr>
                         <td>{key}</td>
