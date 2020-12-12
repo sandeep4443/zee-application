@@ -22,14 +22,11 @@ class App extends React.Component {
   }
 
   findMovies = (e) => {
+    const { movieinfo } = this.state;
     const findValue = e.target.value;
-    const enterValue = findValue.toLowerCase();
-    const findValueLength = findValue.length;
-    const filterValue = this.state.movieinfo.filter((movie) => {
-      const findtitle = movie.Title;
-      const titleLowerCase = findtitle ? findtitle.toLowerCase() : "";
-      const titleSlice = titleLowerCase.slice(0, findValueLength);
-      return enterValue === titleSlice;
+    const filterValue = movieinfo.filter((title) => {
+      const titleMovies = title.Title;
+      return titleMovies.toLowerCase().includes(findValue.toLowerCase());
     });
     this.setState({ movieinfo: filterValue });
   };
@@ -69,25 +66,21 @@ class App extends React.Component {
 
   findGenreList = () => {
     const { movieinfo } = this.state;
-    const major_genre = movieinfo.map((movie) => movie.Major_Genre);
-    const unique_genre = major_genre.filter(
-      (genre, index) => genre !== null && index === major_genre.indexOf(genre)
-    );
-    const gen = {};
-    let count = 0;
-    unique_genre.forEach((genre) => {
-      major_genre.forEach((totalGen) => {
-        if (genre === totalGen) {
-          count += 1;
-          gen[genre] = count;
-        }
-      });
+    const majorGenre = movieinfo.map((movie) => movie.Major_Genre);
+    const genreDetails = {};
+
+    majorGenre.forEach((value) => {
+      if (genreDetails[value]) {
+        genreDetails[value] += 1;
+        return;
+      } else {
+        genreDetails[value] = 1;
+      }
     });
-    this.setState({ genreDetails: gen });
+    this.setState({ genreDetails });
   };
 
   updateMovieName = (e) => {
-    console.log("value is", e.target.value);
     this.setState({ newTitle: e.target.value });
   };
 
@@ -100,11 +93,9 @@ class App extends React.Component {
     if (isValid) {
       alert("Movie With Title Already Exists");
     } else {
-    const editedTitie = { ...editMovieName, Title: newTitle };
-    const newMovies = movieinfo.filter((movie) => movie !== editMovieName);
-    console.log("edited title", editedTitie);
-    console.log("new movies", newMovies);
-    this.setState({ movieinfo: [...newMovies, editedTitie] });
+      const editedTitie = { ...editMovieName, Title: newTitle };
+      const newMovies = movieinfo.filter((movie) => movie !== editMovieName);
+      this.setState({ movieinfo: [...newMovies, editedTitie] });
     }
   };
 
@@ -131,10 +122,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(
-      "this.state.genreDetails",
-      Object.keys(this.state.genreDetails)
-    );
     return (
       <>
         <div>
@@ -195,12 +182,7 @@ class App extends React.Component {
         </div>
 
         <div>
-          <input
-            type="text"
-            id="updatetext"
-        
-            onChange={this.updateMovieName}
-          />
+          <input type="text" id="updatetext" onChange={this.updateMovieName} />
           <button onClick={this.updateMovieTitle}>Update Movie</button>
         </div>
 
@@ -258,7 +240,6 @@ class App extends React.Component {
             <button onClick={this.findGenreList}>GENRE DETAILS</button>
 
             <br />
-           
           </div>
           {this.state.duplicateMoviesList.length > 0 && (
             <h1>DUPLICATE MOVIES: {this.state.duplicateMoviesList.length}</h1>
@@ -292,8 +273,28 @@ class App extends React.Component {
               </table>
             </div>
           )}
-          <div>{Object.entries(this.state.genreDetails)}</div>
+          {Object.keys(this.state.genreDetails).length !== 0 && 
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Genre</th>
+                  <th>Occurences</th>
+                </tr>
+              </thead>
 
+              <tbody>
+                {Object.entries(this.state.genreDetails).map(([key, value]) => {
+                    return (
+                      <tr>
+                        <td>{key}</td>
+                        <td>{value}</td>
+                      </tr>
+                    );
+                  })
+                }
+              </tbody>
+            </table>
+          }
         </div>
       </>
     );
