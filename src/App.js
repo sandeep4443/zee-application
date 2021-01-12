@@ -65,8 +65,7 @@ class App extends React.Component {
   };
 
   findGenreList = () => {
-    const { movieinfo } = this.state;
-    const majorGenre = movieinfo.map((movie) => movie.Major_Genre);
+    const majorGenre = MoviesList.map((movie) => movie.Major_Genre);
     const genreDetails = {};
 
     majorGenre.forEach((value) => {
@@ -110,6 +109,7 @@ class App extends React.Component {
   editMovie = (index) => {
     const { movieinfo } = this.state;
     const editMovieName = movieinfo[index];
+
     this.setState({
       editMovieName,
       editable: true,
@@ -273,7 +273,7 @@ class App extends React.Component {
               </table>
             </div>
           )}
-          {Object.keys(MoviesList).length !== 0 && 
+          {Object.keys(this.state.genreDetails).length !== 0 && 
             <table border="1">
               <thead>
                 <tr>
@@ -283,7 +283,7 @@ class App extends React.Component {
               </thead>
 
               <tbody>
-                {Object.entries(MoviesList).map(([key, value]) => {
+                {Object.entries(this.state.genreDetails).map(([key, value]) => {
                     return (
                       <tr>
                         <td>{key}</td>
