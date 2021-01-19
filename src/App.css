@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+
+}
+
+.back{
+  background-color: lightblue;
+}
+
+.slider{
+  margin: 30px;
 }
 
 .App-logo {
@@ -23,6 +32,18 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.block {
+  height: 400px;
+}  
+.list ul li  {
+  display: inline-block;
+  margin-left: 0px;
+  margin-right:8%;
+  margin-top: 10px;
+  margin-bottom:10px;  
+}
+
 
 .App-link {
   color: #61dafb;
