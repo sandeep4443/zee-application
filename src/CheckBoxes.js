@@ -6,9 +6,9 @@ class CheckBoxes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movieinfo: MoviesList.slice(0, 5),
+      movieinfo: MoviesList.slice(0, 10),
       selectedItems: [],
-      enableCheckAll: false
+      enableCheckAll: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
@@ -17,40 +17,41 @@ class CheckBoxes extends React.Component {
   handleChange(event) {
     const { checked } = event.target;
     let values = document.getElementsByName("checkbox");
+    let defaultValues = [];
     for (let i = 0; i < values.length; i++) {
       if (checked === true) {
         this.setState({
-          enableCheckAll: true
+          enableCheckAll: true,
         });
         values[i].checked = true;
-        
+        defaultValues.push(values[i].defaultValue);
+        this.setState({
+          selectedItems: defaultValues,
+        });
       } else {
         values[i].checked = false;
-        this.setState({ enableCheckAll: false})
+        this.setState({ enableCheckAll: false, selectedItems: [] });
       }
     }
   }
 
-  handleCheckBoxChange(event) {
+  handleCheckBoxChange() {
     const array = [];
     const selected = document.getElementsByName("checkbox");
-  
-    let count =0;
-    for (var i = 0, n = selected.length; i < n; i++) {
-      if (selected[i].checked === true) {
-        console.log("selected[i].checked", selected[i].checked);
-        count=count+1;
+    let count = 0;
+    for (var i = 0; i <= selected.length; i++) {
+      if (selected[i] && selected[i].checked && selected[i].checked === true) {
+        count = count + 1;
         array.push(selected[i].value);
-      }    
+        this.setState({ selectedItems: array });
+      }
     }
-    console.log("count length", count);
-    console.log("arr is", array.length);
-    if(count === array.length+1){
+    if (count === selected.length) {
       this.setState({
-        enableCheckAll: true
-      })
+        enableCheckAll: true,
+      });
     } else {
-      this.setState({ enableCheckAll: false})
+      this.setState({ enableCheckAll: false });
     }
   }
 
@@ -60,7 +61,7 @@ class CheckBoxes extends React.Component {
         <div>
           <input
             id="selectAll"
-            name="checkbox"
+            name="checkboxAll"
             type="checkbox"
             checked={this.state.enableCheckAll}
             onChange={this.handleChange}
