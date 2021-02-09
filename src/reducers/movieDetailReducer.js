@@ -7,6 +7,6 @@ const movieDetailReducer = (state = initState, action) =>
                   data: action.data 
                 }; 
                 default: return state
-             }
-             }
+             } 
+            }
 export default movieDetailReducer;

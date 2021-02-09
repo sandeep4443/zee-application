@@ -130,7 +130,6 @@ class MainPage extends React.Component {
     editMovie = (index) => {
         const { movieinfo } = this.state;
         const editMovieName = movieinfo[index];
-        console.log("edit movie name", editMovieName);
         this.setState({ editMovieName });
         if (this.state.editMovieName.Title !== '') {
             this.setState({ updateMovieButtonDisabled: false })
