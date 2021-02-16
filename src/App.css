@@ -36,12 +36,12 @@
     height: 400px;
 }
 
-.list ul li {
-    display: inline-block;
-    margin-left: 0px;
-    margin-right: 8%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.tableStyle {
+    display: inline-block !important;
+    margin-left: 0px !important;
+    margin-right: 8% !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 .App-link {

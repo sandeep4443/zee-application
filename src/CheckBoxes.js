@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { selecItems } from './actions/selItems';
 import MoviesList from "./movies.json";
-import "./App.css";
+import './App.css';
 
-const CheckBoxes = (props) => {
+const CheckBoxes = ({
+    selItems,
+    history
+}) => {
     const [movieinfo] = useState(MoviesList.slice(0, 10));
     const [selectedItems, setSelectedItems] = useState([]);
     const [enableCheckAll, setEnableCheckAll] = useState(false);
@@ -49,55 +52,52 @@ const CheckBoxes = (props) => {
 
 
     const pagination = () => {
-        props.selItems(selectedItems);
-        props.history.push("/pagination");
+        selItems(selectedItems);
+        history.push("/pagination");
     };
 
     return (
-        <div>
-            <div>
-                <input
-                    id="selectAll"
-                    name="checkboxAll"
-                    type="checkbox"
-                    checked={enableCheckAll}
-                    onChange={handleChange}
-                />
+        <div style={{ margin: 30 + 'px' }}>
+            <div className="row">
+                <div className="col-md-4">
+                    <input
+                        id="selectAll"
+                        name="checkboxAll"
+                        type="checkbox"
+                        checked={enableCheckAll}
+                        onChange={handleChange}
+                    />
+                    <label class="tableStyle">Select All</label>
+                </div>
 
-                <label>Select All</label>
-            </div>
-            <div>
                 {movieinfo.map((item, index) => {
                     return (
-                        <div>
-                            <span class="list label-new">
-                                <ul class="ngc">
-                                    <li class="col-xs-2 borders">
-                                        <input
-                                            id={index + 1}
-                                            name="checkbox"
-                                            type="checkbox"
-                                            onChange={handleCheckBoxChange}
-                                            value={item.Title}
-                                        />
-                                        <label
-                                            htmlFor={movieinfo + item.Title}>
-                                            {item.Title}
-                                        </label>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
+                        <ul className="col-md-4">
+                            <li className="borders tableStyle">
+                                <input
+                                    id={index + 1}
+                                    name="checkbox"
+                                    type="checkbox"
+                                    onChange={handleCheckBoxChange}
+                                    value={item.Title}
+                                />
+                                <label
+                                    htmlFor={movieinfo + item.Title}>
+                                    {item.Title}
+                                </label>
+                            </li>
+                        </ul>
                     );
                 })}
-                <div>
-                    <input
-                        type="button"
-                        class="btn btn-primary export"
-                        value="Navigate To Pagination"
-                        onClick={() => pagination()}
-                    />
-                </div>
+            </div>
+
+            <div>
+                <input
+                    type="button"
+                    class="btn btn-primary export"
+                    value="Navigate To Pagination"
+                    onClick={() => pagination()}
+                />
             </div>
         </div>
     );
