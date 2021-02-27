@@ -1,12 +1,12 @@
 const GenreList = ({ genreDetails, findGenreList }) => {
     return (
-        <>
-            <div style={{ margin: 30 + "px" }}>
+        <div style={{ margin: 30 + "px" }}>
+            <div>
                 <button class="btn btn-secondary" onClick={findGenreList}>GENRE DETAILS</button>
                 <br />
             </div>
             {Object.keys(genreDetails).length !== 0 && (
-                <table border="1">
+                <table border="2">
                     <thead>
                         <tr>
                             <th>Genre</th>
@@ -23,7 +23,7 @@ const GenreList = ({ genreDetails, findGenreList }) => {
                         })}
                     </tbody>
                 </table>)}
-        </>
+        </div>
     );
 };
 export default GenreList;

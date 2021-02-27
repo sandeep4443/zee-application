@@ -1,6 +1,6 @@
 const AddMovie = ({ findGetValue, addMovie }) => {
     return (
-        <>
+        <div style={{margin: 30 +'px'}}>
             <div>
                 <div>
                     <label>Enter Title:</label>
@@ -29,7 +29,7 @@ const AddMovie = ({ findGetValue, addMovie }) => {
                 </div>
             </div>
             <button class="btn btn-primary" onClick={addMovie}>ADD MOVIE</button>
-        </>
+        </div>
     );
 };
 export default AddMovie;

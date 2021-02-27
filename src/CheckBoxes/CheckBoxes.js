@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { selecItems } from './actions/selItems';
-import MoviesList from "./movies.json";
-import './App.css';
+import { selecItems } from '../actions/selItems';
 
 const CheckBoxes = ({
+    movieInfo,
     selItems,
     history
 }) => {
-    const [movieinfo] = useState(MoviesList.slice(0, 10));
+    const [movieinfo] = useState(movieInfo.slice(0, 5));
     const [selectedItems, setSelectedItems] = useState([]);
     const [enableCheckAll, setEnableCheckAll] = useState(false);
 
@@ -111,4 +110,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CheckBoxes);
+const mapStateToProps = (state) => {
+    return {
+        movieInfo: state.rootReducer.moviesInfo
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckBoxes);

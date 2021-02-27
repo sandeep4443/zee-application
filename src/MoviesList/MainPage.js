@@ -6,6 +6,7 @@ import GenreList from './GenreList';
 import AddMovie from './AddMovie';
 import UpdateMovie from './UpdateMovie';
 import Buttons from './Buttons';
+import DropDowns from '../Dropdown/DropDowns';
 import "../App.css";
 
 class MainPage extends React.Component {
@@ -157,19 +158,28 @@ class MainPage extends React.Component {
         this.props.history.push("/checkBoxes");
     };
 
+    dropDown = () => {
+        this.props.history.push("/dropDowns");
+    };
+
     render() {
         const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
         return (
             <div>
-                <Buttons logout={this.logout} pagination={this.pagination} />
-                <TableList
-                    movieinfo={this.state.movieinfo}
-                    editMovie={this.editMovie}
-                    deleteMovies={this.deleteMovies}
-                    booleanValue={booleanValue}
-                    moviesCount={this.state.moviesCount}
-                    findMovies={this.findMovies}
+                <Buttons
+                    logout={this.logout}
+                    pagination={this.pagination}
                 />
+
+                <DropDowns
+                    dropDown={this.dropDown}
+                />
+
+                <AddMovie
+                    findGetValue={this.findGetValue}
+                    addMovie={this.addMovie}
+                />
+
                 <UpdateMovie
                     updateMovieName={this.updateMovieName}
                     title={this.state.editMovieName.Title}
@@ -177,9 +187,14 @@ class MainPage extends React.Component {
                     updateMovieButtonDisabled={this.state.updateMovieButtonDisabled}
                 />
 
-                <AddMovie
-                    findGetValue={this.findGetValue}
-                    addMovie={this.addMovie}
+                <TableList
+                    movieinfo={this.state.movieinfo}
+                    editMovie={this.editMovie}
+                    deleteMovies={this.deleteMovies}
+                    booleanValue={booleanValue}
+                    moviesCount={this.state.moviesCount}
+                    findMovies={this.findMovies}
+                    titleValue={this.state.titleValue}
                 />
 
                 <DuplicateMovies

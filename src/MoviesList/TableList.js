@@ -1,11 +1,19 @@
-const TableList = ({ movieinfo, editMovie, deleteMovies, booleanValue, moviesCount, findMovies, }) => {
+const TableList = ({
+    movieinfo,
+    editMovie,
+    deleteMovies,
+    booleanValue,
+    moviesCount,
+    findMovies,
+    titleValue
+}) => {
     return (
         <div style={{ margin: 20 + "px" }}>
             <div>
                 <label>Enter Title:</label>
                 <input type="text" id="fname" name="fname" onChange={findMovies}></input>
             </div>
-            {booleanValue && <h3>{moviesCount} results found</h3>}
+            {(booleanValue && titleValue!=='') && <h3>{moviesCount} results found</h3>}
             <table id="t01">
                 <thead>
                     <tr>

@@ -1,6 +1,6 @@
 const UpdateMovie = ({ updateMovieName, title, updateMovieTitle, updateMovieButtonDisabled }) => {
     return (
-        <div>
+        <div style={{margin: 30 + 'px'}}>
             <input
                 type="text"
                 id="updatetext"
@@ -12,8 +12,10 @@ const UpdateMovie = ({ updateMovieName, title, updateMovieTitle, updateMovieButt
                 class="btn btn-primary"
                 onClick={updateMovieTitle}
                 disabled={updateMovieButtonDisabled}
+                style={{marginLeft: 20+'px'}}
             >
                 Update Movie</button>
-        </div>)
+        </div>
+        )
 }
 export default UpdateMovie;

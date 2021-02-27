@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import Movies from "../movies.json";
 import Pagination from "./Pagination";
 import MovieCard from "./MoviesCard";
 
