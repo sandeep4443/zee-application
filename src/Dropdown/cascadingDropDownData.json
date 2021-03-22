@@ -1,0 +1,59 @@
+[{
+        "name": "India",
+        "states": [{
+                "name": "Telangana",
+                "cities": [
+                    "Hyderabad",
+                    "Warangal",
+                    "Karimnagar",
+                    "Secbad"
+                ]
+            },
+            {
+                "name": "Andhra",
+                "cities": [
+                    "Vizag",
+                    "Vjwasda"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Germany",
+        "states": [{
+            "name": "A",
+            "cities": [
+                "Duesseldorf",
+                "Leinfelden-Echterdingen",
+                "Eschborn"
+            ]
+        }]
+    },
+    {
+        "name": "Spain",
+        "states": [{
+            "name": "B",
+            "cities": [
+                "Barcelona"
+            ]
+        }]
+    },
+    {
+        "name": "USA",
+        "states": [{
+            "name": "C",
+            "cities": [
+                "Downers Grove"
+            ]
+        }]
+    },
+    {
+        "name": "Mexico",
+        "states": [{
+            "name": "D",
+            "cities": [
+                "Puebla"
+            ]
+        }]
+    }
+]

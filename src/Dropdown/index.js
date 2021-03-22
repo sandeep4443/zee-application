@@ -1,5 +1,6 @@
 import DropDownPopulate from './DropDownPopulate';
 import CascadingDropDown from './CascadingDropDown';
+import MultiSelect from './MultiSelectDropDown';
 
 const AllDropDowns = ({ dropDown }) => {
 
@@ -7,6 +8,7 @@ const AllDropDowns = ({ dropDown }) => {
         <>
             <DropDownPopulate dropDown={dropDown} />
             <CascadingDropDown />
+            <MultiSelect/>
         </>
     )
 };

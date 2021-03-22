@@ -5,8 +5,7 @@ import { pageDetails } from '../actions/pageDetails';
 const MovieCard = ({ movie, value, history, detailPage }) => {
 
     const navigateDetailPage = () => {
-        detailPage({ movie, value }
-        );
+        detailPage({ movie, value });
         history.push(`/pagination/${value + 1}/${movie.Title}`);
     }
     return (

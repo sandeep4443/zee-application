@@ -65,8 +65,8 @@ class MainPage extends React.Component {
 
 
     addMovie = () => {
-        const { movieinfo, Title, Release_Date, Distributor, Major_Genre, Director, } = this.state;
-        const newMovie = { Title, Release_Date, Distributor, Major_Genre, Director, };
+        const { movieinfo, Title, Release_Date, Distributor, Major_Genre, Director } = this.state;
+        const newMovie = { Title, Release_Date, Distributor, Major_Genre, Director };
         movieinfo.push(newMovie);
         this.setState({ movieinfo });
     };

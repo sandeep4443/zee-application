@@ -106,7 +106,7 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         selectedItems: state.selectedItemsReducer.data,
         movieInfo: state.rootReducer.moviesInfo
