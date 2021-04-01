@@ -1,0 +1,29 @@
+.app {
+    font-family: "Helvetica", "Tahoma", sans-serif;
+  }
+  
+  .header {
+    background: #00bfff;
+    height: 110px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .score {
+    font-size: 70px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+    color: #fff;
+  }
+  
+  .body {
+    padding: 1px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 111px;
+  }
+  

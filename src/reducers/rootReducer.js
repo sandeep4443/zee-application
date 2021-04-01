@@ -1,7 +1,5 @@
-import MoviesList from "../movies.json";
+import MoviesList from '../movies.json';
 
 const initState = { moviesInfo: MoviesList };
-const rootReducer = (state = initState, action) => {
-    return state;
-};
+const rootReducer = (state = initState) => state;
 export default rootReducer;

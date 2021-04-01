@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DropDowns = ({ dropDown }) => (
+const KeyBoard = ({ keyEvents }) => (
     <div style={ { margin: `${ 30 }px` } }>
         <input
           type="button"
           className="btn btn-success"
-          value="Move to DropDowns"
-          onClick={ () => dropDown() }
+          value="Key Events"
+          onClick={ () => keyEvents() }
         />
     </div>
 );
-export default DropDowns;
+export default KeyBoard;
 
-DropDowns.propTypes = {
-  dropDown:PropTypes.func
+KeyBoard.propTypes = {
+  keyEvents:PropTypes.func
 }
