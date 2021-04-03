@@ -4,23 +4,23 @@ import PropTypes from 'prop-types';
 const UpdateMovie = ({
   updateMovieName, title, updateMovieTitle, updateMovieButtonDisabled,
 }) => (
-    <div style={ { margin: `${ 30 }px` } }>
-        <input
-          type="text"
-          id="updatetext"
-          onChange={ updateMovieName }
-          defaultValue={ title }
-        />
+  <div style={{ margin: `${30}px` }}>
+    <input
+      type="text"
+      id="updatetext"
+      onChange={updateMovieName}
+      defaultValue={title}
+    />
 
-        <button
-          className="btn btn-primary"
-          onClick={ updateMovieTitle }
-          disabled={ updateMovieButtonDisabled }
-          style={ { marginLeft: `${ 20 }px` } }
-        >
-            Update Movie
+    <button
+      className="btn btn-primary"
+      onClick={updateMovieTitle}
+      disabled={updateMovieButtonDisabled}
+      style={{ marginLeft: `${20}px` }}
+    >
+      Update Movie
         </button>
-    </div>
+  </div>
 )
 export default UpdateMovie;
 
