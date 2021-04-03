@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { selecItems } from '../actions/selItems';
 import styles from '../App.css';
 
+
 const CheckBoxes = ({
   movieInfo,
   selItems,
