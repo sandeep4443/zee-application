@@ -1,50 +1,86 @@
 const path = require('path');
-// eslint-disable-next-line import/no-extraneous-dependencies
+const webpack = require('webpack');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  context: __dirname,
-  entry: './src/index.js',
+  mode: 'development',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    publicPath: '/',
+    path: path.join(__dirname, './build'),
+    filename: 'index_bundle.js'
   },
+
+  devServer: {
+    port: 4200,
+    contentBase: "./public",
+    hot: true,
+    open: true,
+    historyApiFallback: true
+  },
+
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js', '.html', '.json', '.jsx'],
+    modules: [path.join(__dirname, './build'), 'node_modules']
   },
+  devtool: 'inline-source-map',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({ template: './public/index.html' })
+  ],
   module: {
     rules: [
       {
-        test: /\.js?$/,
-        exclude: /node_module/,
-        use: 'babel-loader'
+        test: /\.(js|jsx)$/,
+        include: [path.resolve(__dirname, 'src')],
+        use: ['eslint-loader', 'babel-loader'],
       },
+
       {
         test: /\.css$/,
-        exclude: /node_module/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.less$/,
         use: [
-          'style-loader',
           {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]-[local]-[hash:base64:4]'
-              }
-            }
+            loader: 'style-loader'  // creates style nodes from js strings
+          },
+          {
+            loader: 'css-loader' //translates css into commonJs
+          },
+          {
+            loader: 'less-loader'
           }
         ]
       },
       {
-        test: /\.html$/,
-        include: path.join(__dirname, 'src'),
-        use: 'html-loader'
-      }
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ]
+      },
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
-      filename: './index.html'
-    })
-  ]
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          priority: -10,
+          test: /[\\/]node_modules[\\/]/
+        }
+      },
+      chunks: 'async',
+      minChunks: 1,
+      minSize: 30000,
+      name: true
+    }
+  }
 };
