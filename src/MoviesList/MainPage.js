@@ -35,6 +35,7 @@ class MainPage extends React.Component {
 
   componentDidMount() {
     const { movieInfo } = this.props;
+    console.log("props are", movieInfo);
     this.setState({
       movieinfo: movieInfo.slice(0, 20),
     })
@@ -222,8 +223,8 @@ class MainPage extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  movieInfo: state.rootReducer.moviesInfo,
+const mapStateToProps = state => ({
+  movieInfo: state.listInfoReducer.moviesInfo
 })
 
 export default connect(mapStateToProps)(MainPage);

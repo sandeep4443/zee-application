@@ -31,13 +31,10 @@ That is, if you were to start setInterval in useEffect you would return a functi
 
 export const useFetch = endpoint => {
     const [data, dispatch] = useReducer(apiReducer, initialState);
-    console.log("*****", data);
     async function getData() {
         await axios.get(endpoint)
             .then(response => {
-                console.log("response is", response);
-                if (!response.ok) throw Error(response.statusText);
-                return response.json();
+                return response;
             })
             .then(json => {
                 dispatch({ type: "DATA_FETCH_SUCCESS", payload: json });

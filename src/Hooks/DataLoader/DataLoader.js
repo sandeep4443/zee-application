@@ -3,7 +3,7 @@ import { useFetch } from "./UseFetch";
 
 const DataLoader = () => {
     const data = useFetch("https://jsonplaceholder.typicode.com/todos/");
-    console.log("data is", data);
+    const value = ((data && data.data) && (data.data.data));
     return (
         <div style={{ textAlign: "center", margin: "30px" }}>
             <table>
@@ -14,7 +14,7 @@ const DataLoader = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data ? data.map(content => {
+                    {value ? value.map(content => {
                         return (
                             <tr key={content.id}>
                                 <td style={{ paddingTop: "10px" }}>{content.userId}</td>

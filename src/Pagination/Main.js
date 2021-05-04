@@ -116,7 +116,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => ({
   selectedItems: state.selectedItemsReducer.data,
-  movieInfo: state.rootReducer.moviesInfo,
+  movieInfo: state.listInfoReducer.moviesInfo
 })
 
 export default connect(mapStateToProps)(Main);
