@@ -107,8 +107,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
 })
 
-const mapStateToProps = (state) => ({
-  movieInfo: state.rootReducer.moviesInfo,
+const mapStateToProps = state => ({
+  movieInfo: state.listInfoReducer.moviesInfo
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckBoxes);
