@@ -10,6 +10,8 @@ import Buttons from './Buttons';
 import DropDowns from '../Dropdown/DropDowns';
 import KeyEvents from '../KeyboardEvent/KeyEvents';
 import Hooks from '../Hooks'
+import BreakingBad from '../BreakingBad';
+import Spinner from '../Spinner';
 import '../App.css';
 
 class MainPage extends React.Component {
@@ -166,6 +168,14 @@ class MainPage extends React.Component {
     this.props.history.push('/hooks');
   };
 
+  breakingBad = () => {
+    this.props.history.push('breakingBad');
+  }
+
+  spinner = () => {
+    this.props.history.push('spinner');
+  }
+
   render() {
     const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
     return (
@@ -173,6 +183,14 @@ class MainPage extends React.Component {
 
         <Hooks
           hooks={this.hooks}
+        />
+
+        <BreakingBad
+          breakingBad={this.breakingBad}
+        />
+
+        <Spinner
+          spinner={this.spinner}
         />
 
         <Buttons
