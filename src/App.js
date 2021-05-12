@@ -9,7 +9,7 @@ import DropDown from './Dropdown';
 import KeyBoard from './KeyboardEvent/Keyboard';
 import Hooks from './Hooks/DataLoader/DataLoader';
 import BreakingBadDetail from './BreakingBad/BreakingBadPage';
-import Spinner from './Spinner/SpinnerPage';
+
 
 const App = () => (
     <Router>
@@ -21,7 +21,6 @@ const App = () => (
         <Route path="/keyboard" exact strict component={KeyBoard} />
         <Route path="/hooks" exact strict component={Hooks} />
         <Route path="/breakingBad" exact strict component={BreakingBadDetail} />
-        <Route path="/spinner" exact strict component={Spinner} />
     </Router>
 );
 export default App;
