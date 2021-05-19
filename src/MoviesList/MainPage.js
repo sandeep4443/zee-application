@@ -11,6 +11,7 @@ import DropDowns from '../Dropdown/DropDowns';
 import KeyEvents from '../KeyboardEvent/KeyEvents';
 import Hooks from '../Hooks'
 import BreakingBad from '../BreakingBad';
+import AddRemove from '../AddRemove';
 import '../App.css';
 
 class MainPage extends React.Component {
@@ -168,11 +169,15 @@ class MainPage extends React.Component {
   };
 
   breakingBad = () => {
-    this.props.history.push('breakingBad');
+    this.props.history.push('/breakingBad');
   }
 
   spinner = () => {
-    this.props.history.push('spinner');
+    this.props.history.push('/spinner');
+  }
+
+  addRemove = () => {
+    this.props.history.push('/addRemove');
   }
 
   render() {
@@ -204,6 +209,11 @@ class MainPage extends React.Component {
           <div className="col-md-4">
             <KeyEvents
               keyEvents={this.keyboard}
+            />
+          </div>
+          <div className="col-md-4">
+            <AddRemove
+              addRemove={this.addRemove}
             />
           </div>
         </div>

@@ -5,7 +5,7 @@ const BreakingBad = ({ breakingBad }) => (
     <div style={{ margin: `${30}px` }}>
         <input
             type="button"
-            className="btn btn-success"
+            className="buttonStyle"
             value="Breaking Bad"
             onClick={() => breakingBad()}
         />

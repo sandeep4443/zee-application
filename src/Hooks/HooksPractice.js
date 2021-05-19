@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 const HooksPractice = ({ hooks }) => (
     <div style={{ margin: `${30}px` }}>
-    <input
+        <input
             type="button"
-            className="btn btn-success"
+            className="buttonStyle"
             value="Hooks Practise"
             onClick={() => hooks()}
         />

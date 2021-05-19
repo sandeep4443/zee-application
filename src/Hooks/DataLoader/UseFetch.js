@@ -31,8 +31,8 @@ That is, if you were to start setInterval in useEffect you would return a functi
 
 export const useFetch = endpoint => {
     const [data, dispatch] = useReducer(apiReducer, initialState);
-    async function getData() {
-        await axios.get(endpoint)
+    useEffect(() => {
+        axios.get(endpoint)
             .then(response => {
                 return response;
             })
@@ -42,10 +42,6 @@ export const useFetch = endpoint => {
             .catch(error => {
                 dispatch({ type: "DATA_FETCH_FAILURE", payload: error.message });
             });
-    }
-
-    useEffect(() => {
-        getData();
     }, []);
 
     return data;

@@ -92,8 +92,7 @@ td {
   color: white;
 }
 
-input[type="button"],
-button {
+.buttonStyle {
   background-color: black;
   color: white;
   width: auto;
@@ -101,8 +100,23 @@ button {
   padding: 5px;
 }
 
-input[type="button"]:hover,
-button:hover {
+.removeButton {
+  background-color: lightsalmon;
+  color: black;
+  width: auto;
+  height: auto;
+  padding: 5px;
+}
+
+.addButton {
+  background-color: lightskyblue;
+  color: black;
+  width: auto;
+  height: auto;
+  padding: 5px;
+}
+
+.buttonStyle:hover {
   background-color: white;
   color: black;
   width: auto;

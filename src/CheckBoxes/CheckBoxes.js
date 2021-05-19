@@ -92,7 +92,7 @@ const CheckBoxes = ({
       <div>
         <input
           type="button"
-          className="btn btn-primary export"
+          className="buttonStyle"
           value="Navigate To Pagination"
           onClick={() => pagination()}
         />

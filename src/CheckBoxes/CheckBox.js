@@ -5,7 +5,7 @@ const Buttons = ({ checkbox }) => (
   <div style={{ margin: `${30}px` }}>
     <input
       type="button"
-      className="btn btn-success"
+      className="buttonStyle"
       value="Move to Checkboxes"
       onClick={() => checkbox()}
     />
