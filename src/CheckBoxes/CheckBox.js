@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const KeyBoard = ({ keyEvents }) => (
+const Buttons = ({ checkbox }) => (
   <div style={{ margin: `${30}px` }}>
     <input
       type="button"
       className="buttonStyle"
-      value="Key Events"
-      onClick={() => keyEvents()}
+      value="Move to Checkboxes"
+      onClick={() => checkbox()}
     />
   </div>
-);
-export default KeyBoard;
+); export default Buttons;
 
-KeyBoard.propTypes = {
-  keyEvents: PropTypes.func
+Buttons.propTypes = {
+  logout: PropTypes.func
 }

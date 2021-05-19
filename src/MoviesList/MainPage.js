@@ -6,12 +6,12 @@ import DuplicateMovies from './DuplicateMoviesList';
 import GenreList from './GenreList';
 import AddMovie from './AddMovie';
 import UpdateMovie from './UpdateMovie';
-import Buttons from './Buttons';
+import CheckBox from '../CheckBoxes/CheckBox';
 import DropDowns from '../Dropdown/DropDowns';
 import KeyEvents from '../KeyboardEvent/KeyEvents';
 import Hooks from '../Hooks'
 import BreakingBad from '../BreakingBad';
-import Spinner from '../Spinner';
+import AddRemove from '../AddRemove';
 import '../App.css';
 
 class MainPage extends React.Component {
@@ -152,7 +152,7 @@ class MainPage extends React.Component {
     this.setState({ [e.target.id]: getTitle });
   };
 
-  logout = () => {
+  checkbox = () => {
     this.props.history.push('/checkBoxes');
   };
 
@@ -169,43 +169,54 @@ class MainPage extends React.Component {
   };
 
   breakingBad = () => {
-    this.props.history.push('breakingBad');
+    this.props.history.push('/breakingBad');
   }
 
   spinner = () => {
-    this.props.history.push('spinner');
+    this.props.history.push('/spinner');
+  }
+
+  addRemove = () => {
+    this.props.history.push('/addRemove');
   }
 
   render() {
     const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
     return (
       <div>
-
-        <Hooks
-          hooks={this.hooks}
-        />
-
-        <BreakingBad
-          breakingBad={this.breakingBad}
-        />
-
-        <Spinner
-          spinner={this.spinner}
-        />
-
-        <Buttons
-          logout={this.logout}
-          pagination={this.pagination}
-        />
-
-        <DropDowns
-          dropDown={this.dropDown}
-        />
-
-        <KeyEvents
-          keyEvents={this.keyboard}
-        />
-
+        <div className="row">
+          <div className="col-md-4">
+            <Hooks
+              hooks={this.hooks}
+            />
+          </div>
+          <div className="col-md-4">
+            <BreakingBad
+              breakingBad={this.breakingBad}
+            />
+          </div>
+          <div className="col-md-4">
+            <CheckBox
+              checkbox={this.checkbox}
+              pagination={this.pagination}
+            />
+          </div>
+          <div className="col-md-4">
+            <DropDowns
+              dropDown={this.dropDown}
+            />
+          </div>
+          <div className="col-md-4">
+            <KeyEvents
+              keyEvents={this.keyboard}
+            />
+          </div>
+          <div className="col-md-4">
+            <AddRemove
+              addRemove={this.addRemove}
+            />
+          </div>
+        </div>
         <AddMovie
           findGetValue={this.findGetValue}
           addMovie={this.addMovie}
