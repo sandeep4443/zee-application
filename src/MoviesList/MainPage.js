@@ -37,7 +37,6 @@ class MainPage extends React.Component {
 
   componentDidMount() {
     const { movieInfo } = this.props;
-    console.log("props are", movieInfo);
     this.setState({
       movieinfo: movieInfo.slice(0, 20),
     })

@@ -6,9 +6,9 @@ const MultiSelect = () => {
     const [data] = useState(MultiSelectData);
     const [displayData, setDisplayData] = useState(false);
     const [results, setResults] = useState([]);
-    const [selValue, setSelValue] = useState([])
+    const [selValue] = useState([]);
+    const [itemsHere, setItemsHere] = useState(false);
 
-    const items = [];
     const searchText = (event) => {
         setDisplayData(true);
         const { value } = event.target;
@@ -20,21 +20,36 @@ const MultiSelect = () => {
             }
             return null;
         });
-        setResults(filterValue);
+
+        const filtered = filterValue.filter(el => {
+            return selValue.indexOf(el.name) !== -1;
+        });
+
+        const fill = filterValue.filter(el => {
+            return filtered.indexOf(el) === -1;
+        });
+
+        setResults(fill);
     }
 
     const selectedValue = (e) => {
         const value = e.target.innerText;
-        items.push(value);
-        setSelValue(items.push(value));
+        setDisplayData(false);
+        selValue.push(value);
+        if (selValue.length >= 1) {
+            setItemsHere(true)
+        } else {
+            setItemsHere(false)
+        }
     }
+
 
     return (
         <div className="instructions">
-            {selValue && selValue.map((item) => (
-                <div key={item}>
-                    {item}
-                </div>
+            {(itemsHere && selValue) && selValue.map((item) => (
+                <ol key={item}>
+                    <li>{item}</li>
+                </ol>
             ))}
             <div className="dropdown-container">
                 <div className="dropdown-button noselect">
