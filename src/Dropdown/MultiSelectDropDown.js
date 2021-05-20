@@ -16,20 +16,26 @@ const MultiSelect = () => {
             const countryNames = title.name;
             if (countryNames !== null) {
                 const names = countryNames.toString().toLowerCase();
-                return names.includes(value.toLowerCase());
+                // return names.includes(value.toLowerCase());
+                return names.indexOf(value.toLowerCase()) !== -1;
             }
-            return null;
         });
 
+        /**
+         * to get a list of selected items we are using filtered const
+         */
         const filtered = filterValue.filter(el => {
             return selValue.indexOf(el.name) !== -1;
         });
 
-        const fill = filterValue.filter(el => {
+        /**
+         * filteredItems will display items hiding already selected items
+         */
+
+        const filteredItems = filterValue.filter(el => {
             return filtered.indexOf(el) === -1;
         });
-
-        setResults(fill);
+        setResults(filteredItems);
     }
 
     const selectedValue = (e) => {
