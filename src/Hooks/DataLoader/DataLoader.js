@@ -6,7 +6,7 @@ const DataLoader = () => {
     const value = ((data && data.data) && (data.data.data));
     return (
         <div style={{ textAlign: "center", margin: "30px" }}>
-            <table>
+            <table id="t01">
                 <thead>
                     <tr>
                         <th>User ID</th>

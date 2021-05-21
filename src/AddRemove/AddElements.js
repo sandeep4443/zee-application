@@ -69,7 +69,15 @@ const AddElements = () => {
                                     onChange={e => handleInputChange(e, i)}
                                 />
                             </div>
-                            <div className="col-md-3" style={{ marginTop: 30 + 'px' }}>
+                            <div className="col-md-1">
+                                <input
+                                    type="button"
+                                    className="addButton"
+                                    value="Add"
+                                    onClick={addElement}
+                                />
+                            </div>
+                            <div className="col-md-2">
                                 {inputValues.length != 1 &&
                                     <input
                                         type="button"
@@ -78,14 +86,6 @@ const AddElements = () => {
                                         onClick={() => removeElement(i)}
                                     />
                                 }
-                            </div>
-                            <div className="col-md-3" style={{ marginTop: 30 + 'px' }}>
-                                <input
-                                    type="button"
-                                    className="addButton"
-                                    value="Add"
-                                    onClick={addElement}
-                                />
                             </div>
                         </div>
                         <div>

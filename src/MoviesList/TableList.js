@@ -53,10 +53,10 @@ const TableList = ({
                             {details.Major_Genre}
                         </td>
                         <td>
-                            <button onClick={() => { editMovie(index); }}>Edit</button>
+                            <button onClick={() => { editMovie(index); }} className="bStyle">Edit</button>
                         </td>
                         <td>
-                            <button onClick={() => { deleteMovies(index); }}>Delete</button>
+                            <button onClick={() => { deleteMovies(index); }} className="bStyle">Delete</button>
                         </td>
                     </tr>
                 ))}
