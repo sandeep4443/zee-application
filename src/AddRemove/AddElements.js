@@ -47,6 +47,16 @@ const AddElements = () => {
     };
     return (
         <div style={{ margin: 30 + 'px' }}>
+
+            <input
+                style={{ float: 'right' }}
+                type="button"
+                className="addButton"
+                value="Add"
+                onClick={addElement}
+                disabled={inputValues.length == 5}
+            />
+
             {inputValues.map((val, i) => {
                 return (
                     <div>
@@ -69,15 +79,8 @@ const AddElements = () => {
                                     onChange={e => handleInputChange(e, i)}
                                 />
                             </div>
-                            <div className="col-md-1">
-                                <input
-                                    type="button"
-                                    className="addButton"
-                                    value="Add"
-                                    onClick={addElement}
-                                />
-                            </div>
-                            <div className="col-md-2">
+
+                            <div className="col-md-3">
                                 {inputValues.length != 1 &&
                                     <input
                                         type="button"
