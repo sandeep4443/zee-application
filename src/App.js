@@ -10,6 +10,7 @@ import KeyBoard from './KeyboardEvent/Keyboard';
 import Hooks from './Hooks/DataLoader/DataLoader';
 import BreakingBadDetail from './BreakingBad/BreakingBadPage';
 import AddRemoveElements from './AddRemove/AddElements';
+import Genres from './GenreSelection/Genres';
 
 
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
         <Route path="/hooks" exact strict component={Hooks} />
         <Route path="/breakingBad" exact strict component={BreakingBadDetail} />
         <Route path="/addRemove" exact strict component={AddRemoveElements} />
+        <Route path="/genres" exact strict component={Genres} />
     </Router>
 );
 export default App;

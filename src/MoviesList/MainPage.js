@@ -12,6 +12,7 @@ import KeyEvents from '../KeyboardEvent/KeyEvents';
 import Hooks from '../Hooks'
 import BreakingBad from '../BreakingBad';
 import AddRemove from '../AddRemove';
+import Genres from '../GenreSelection';
 import '../App.css';
 
 class MainPage extends React.Component {
@@ -179,11 +180,20 @@ class MainPage extends React.Component {
     this.props.history.push('/addRemove');
   }
 
+  genre = () => {
+    this.props.history.push('/genres');
+  }
+
   render() {
     const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
     return (
       <div>
         <div className="row">
+          <div className="col-md-4">
+            <Genres
+              genre={this.genre}
+            />
+          </div>
           <div className="col-md-4">
             <Hooks
               hooks={this.hooks}
