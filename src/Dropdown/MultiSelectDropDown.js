@@ -62,9 +62,9 @@ const MultiSelect = () => {
                     <div className="dropdown-label">States</div>
                     <div className="dropdown-quantity">
                         (
-                      <span className="quantity">Any</span>
-                      )
-                  </div>
+                        <span className="quantity">Any</span>
+                        )
+                    </div>
                     <i className="fa fa-filter" />
                 </div>
                 <div className="dropdown-list">

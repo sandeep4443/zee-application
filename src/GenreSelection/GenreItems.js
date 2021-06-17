@@ -1,35 +1,54 @@
 import React from 'react'
 
-const GenreItems = ({ genreList, genValue }) => {
+const GenreItems = ({ genreList, genValue, fetchData }) => {
+    let list = genreList.sort((a, b) => (a.Title > b.Title) ? 1 : ((b.Title > a.Title) ? -1 : 0));
     return (
         <div>
-            {genreList.length > 0 && <strong>{genValue} : {genreList.length}</strong>}
-            {genreList && genreList.map(genre => (
-                <section className="cards">
-                    <div className='card'>
-                        <div className='card-inner'>
-                            <div className='card-front' style={{ margin: 10 + 'px' }}>
-                                <div>
-                                    <strong>Title</strong> {genre.Title}
-                                </div>
-                                <div>
-                                    <strong>Nickname:</strong> {genre.US_Gross}
-                                </div>
-                                <div>
-                                    <strong>Birthday:</strong> {genre.MPAA_Rating}
-                                </div>
-                                <div>
-                                    <strong>Status:</strong> {genre.Major_Genre}
-                                </div>
-                                <div>
-                                    <strong>Status:</strong> {genre.IMDB_Rating}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            )
-            )}
+            {(fetchData && genreList.length > 0) && <strong>{genValue} : {genreList.length}</strong>}
+            {(fetchData && genreList.length > 0) &&
+                <table id="t01">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Title</th>
+                            <th>US_Gross</th>
+                            <th>MPAA_Rating</th>
+                            <th>Major_Genre</th>
+                            <th>IMDB_Rating</th>
+                            <th>Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {list && list.map((genre, index) => (
+                            <tr>
+                                <td>
+                                    {index + 1}
+                                </td>
+                                <td>
+                                    {genre.Title}
+                                </td>
+                                <td>
+                                    {genre.US_Gross}
+                                </td>
+                                <td>
+                                    {genre.MPAA_Rating}
+                                </td>
+                                <td>
+                                    {genre.Major_Genre}
+                                </td>
+                                <td>
+                                    {genre.IMDB_Rating}
+                                </td>
+                                <td>
+                                    {genre.IMDB_Votes}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            }
+            {fetchData && genreList.length === 0 &&
+                <div>No Results Found</div>}
         </div>
     )
 }

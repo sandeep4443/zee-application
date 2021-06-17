@@ -32,7 +32,7 @@ const Keyboard = () => {
 
   const buttons = routes.map((route, index) => (
     <Button keys={route.length} value={route.value} onClick={add} key={index}>
-      { route.length}
+      {route.length}
     </Button>
   ));
 

@@ -13,6 +13,7 @@ import Hooks from '../Hooks'
 import BreakingBad from '../BreakingBad';
 import AddRemove from '../AddRemove';
 import Genres from '../GenreSelection';
+import Calculator from '../Calculator';
 import '../App.css';
 
 class MainPage extends React.Component {
@@ -43,7 +44,7 @@ class MainPage extends React.Component {
     })
   }
 
-  findMovies = (e) => {
+  findMovies = e => {
     const movieinfo = this.props.movieInfo;
     const findValue = e.target.value;
     this.setState({ titleValue: findValue });
@@ -105,7 +106,7 @@ class MainPage extends React.Component {
     this.setState({ genreDetails });
   };
 
-  updateMovieName = (e) => {
+  updateMovieName = e => {
     if (e.target.value !== '') {
       this.setState({
         updateMovieButtonDisabled: false,
@@ -130,7 +131,7 @@ class MainPage extends React.Component {
     document.getElementById('updatetext').value = '';
   };
 
-  editMovie = (index) => {
+  editMovie = index => {
     const { movieinfo } = this.state;
     const editMovieName = movieinfo[index];
     this.setState({ editMovieName });
@@ -141,13 +142,13 @@ class MainPage extends React.Component {
     }
   };
 
-  deleteMovies = (index) => {
+  deleteMovies = index => {
     const { movieinfo } = this.state;
     const deleteFilterValue = movieinfo.filter((movie) => movie !== movieinfo[index]);
     this.setState({ movieinfo: deleteFilterValue });
   };
 
-  findGetValue = (e) => {
+  findGetValue = e => {
     const getTitle = e.target.value;
     this.setState({ [e.target.id]: getTitle });
   };
@@ -182,6 +183,10 @@ class MainPage extends React.Component {
 
   genre = () => {
     this.props.history.push('/genres');
+  }
+
+  calculator = () => {
+    this.props.history.push('/calculator');
   }
 
   render() {
@@ -223,6 +228,11 @@ class MainPage extends React.Component {
           <div className="col-md-4">
             <AddRemove
               addRemove={this.addRemove}
+            />
+          </div>
+          <div className="col-md-4">
+            <Calculator
+              calculator={this.calculator}
             />
           </div>
         </div>
