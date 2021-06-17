@@ -75,21 +75,24 @@ td {
 th,
 td {
   padding: 15px;
-  text-align: left;
-  color: black;
+  text-align: center;
+  /* color: black; */
 }
 
 #t01 tr:nth-child(even) {
-  background-color: #eee;
+  background-color: lightgray;
 }
 
 #t01 tr:nth-child(odd) {
   background-color: whitesmoke;
 }
 
-#t01 th {
-  background-color: black;
-  color: white;
+#t01 th:nth-child(even) {
+  background-color: burlywood;
+}
+
+#t01 th:nth-child(odd) {
+  background-color: #324960;
 }
 
 .buttonStyle {
@@ -103,17 +106,23 @@ td {
 .removeButton {
   background-color: lightsalmon;
   color: black;
-  width: auto;
-  height: auto;
-  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .addButton {
   background-color: lightskyblue;
   color: black;
-  width: auto;
-  height: auto;
-  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .buttonStyle:hover {
@@ -124,8 +133,28 @@ td {
   padding: 5px;
 }
 
+.bStyle {
+  background-color: lightgreen;
+  color: black;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.bStyle:hover {
+  background-color: red;
+  color: white;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 label {
   color: black;
+  display: inline-block;
+  width: fit-content;
 }
 
 * {
