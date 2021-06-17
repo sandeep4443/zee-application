@@ -8,6 +8,7 @@ const MultiSelect = () => {
     const [results, setResults] = useState([]);
     const [selValue] = useState([]);
     const [itemsHere, setItemsHere] = useState(false);
+    const [enableContent, setEnableContent] = useState(false);
 
     const searchText = (event) => {
         setDisplayData(true);
@@ -20,6 +21,8 @@ const MultiSelect = () => {
                 return names.indexOf(value.toLowerCase()) !== -1;
             }
         });
+
+
 
         /**
          * to get a list of selected items we are using filtered const
@@ -49,27 +52,26 @@ const MultiSelect = () => {
         }
     }
 
+    const contentEnabled = () => {
+        setEnableContent(true);
+        console.log("*******");
+        console.log("enable content", enableContent);
+    }
+
 
     return (
         <div className="instructions">
             {(itemsHere && selValue) && selValue.map((item) => (
-                <ol key={item}>
-                    <li>{item}</li>
-                </ol>
-            ))}
-            <div className="dropdown-container">
-                <div className="dropdown-button noselect">
-                    <div className="dropdown-label">States</div>
-                    <div className="dropdown-quantity">
-                        (
-                        <span className="quantity">Any</span>
-                        )
-                    </div>
-                    <i className="fa fa-filter" />
+                <div key={item}>
+                    <div>{item}</div>
                 </div>
-                <div className="dropdown-list">
+            ))}
+            <div className="dropdown">
+                <button onClick={contentEnabled} className="dropbtn">Dropdown</button>
+                {enableContent && <div id="myDropdown" className="dropdown-content">
                     <input
                         type="search"
+                        id="myInput"
                         placeholder="Search states"
                         className="dropdown-search"
                         onChange={searchText}
@@ -80,8 +82,7 @@ const MultiSelect = () => {
                             <a id={`value ${index}`} key={index} onClick={selectedValue}>{dat.name}</a>
                         </div>
                     ))}
-
-                </div>
+                </div>}
             </div>
         </div>
     )
