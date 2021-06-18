@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import GenreItem from './GenreItems';
-import './Genre.css'
 
 const Categories = () => {
     const moviesList = useSelector(state => state.listInfoReducer.moviesInfo);
