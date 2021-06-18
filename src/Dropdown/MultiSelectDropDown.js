@@ -23,9 +23,8 @@ const MultiSelect = () => {
         });
 
 
-
         /**
-         * to get a list of selected items we are using filtered const
+         * to get a list of selected items we are using filtered function
          */
         const filtered = filterValue.filter(el => {
             return selValue.indexOf(el.name) !== -1;
