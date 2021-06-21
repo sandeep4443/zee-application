@@ -53,8 +53,6 @@ const MultiSelect = () => {
 
     const contentEnabled = () => {
         setEnableContent(true);
-        console.log("*******");
-        console.log("enable content", enableContent);
     }
 
 
