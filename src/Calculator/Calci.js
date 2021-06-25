@@ -123,6 +123,7 @@ class Calci extends React.Component {
     }
 
     render() {
+
         return (
             <div id="calculator">
                 <div id="output">

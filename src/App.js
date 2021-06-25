@@ -12,6 +12,7 @@ import BreakingBadDetail from './BreakingBad/BreakingBadPage';
 import AddRemoveElements from './AddRemove/AddElements';
 import Genres from './GenreSelection/Genres';
 import Calci from './Calculator/Calci';
+import Expenses from './Expenses/ExpenseItems/ExpensesList';
 
 
 const App = () => (
@@ -27,6 +28,7 @@ const App = () => (
         <Route path="/addRemove" exact strict component={AddRemoveElements} />
         <Route path="/genres" exact strict component={Genres} />
         <Route path="/calculator" exact strict component={Calci} />
+        <Route path="/expenses" exact strict component={Expenses} />
     </Router>
 );
 export default App;
