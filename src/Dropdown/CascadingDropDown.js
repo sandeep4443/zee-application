@@ -10,15 +10,34 @@ const CascadingDropdown = () => {
     const [city, selectedCity] = useState();
 
     const changeCountry = (event) => {
-        selectedCountry(event.target.value);
-
-        setStates(countries.find((cntry) => cntry.name === event.target.value).states);
+        const { value } = event.target;
+        selectedCountry(value);
+        if (value === "--Choose Country--") {
+            selectedState("");
+            selectedCity("");
+        }
+        let arr = countries.find((cntry) => cntry.name === event.target.value);
+        if (arr !== undefined) {
+            setStates(arr.states);
+        } else {
+            setStates("");
+        }
     }
 
     const changeState = (event) => {
+        const { value } = event.target;
+        if (value === "--Choose State--") {
+            selectedCity("");
+        }
         selectedState(event.target.value);
         const stats = countries.find((cntry) => cntry.name === country).states;
-        setCities(stats.find((stat) => stat.name === event.target.value).cities);
+        let arr = stats.find((stat) => stat.name === event.target.value);
+        if (arr !== undefined) {
+            setCities(arr.cities);
+        } else {
+            setCities("");
+        }
+
     }
 
     const selCity = (event) => {
@@ -31,7 +50,7 @@ const CascadingDropdown = () => {
             <div className="row">
                 <div className="col-md-4">
                     <label>Country</label>
-                    <select placeholder="Country" value={country} onChange={changeCountry}>
+                    <select value={country} onChange={changeCountry}>
                         <option>--Choose Country--</option>
                         {countries.map((e, key) => <option key={key}>{e.name}</option>)}
                     </select>
@@ -41,15 +60,15 @@ const CascadingDropdown = () => {
                     <label>State</label>
                     <select placeholder="State" value={state} onChange={changeState}>
                         <option>--Choose State--</option>
-                        {states.map((e, key) => <option key={key}>{e.name}</option>)}
+                        {states && states.map((e, key) => <option key={key}>{e.name}</option>)}
                     </select>
                 </div>
 
                 <div className="col-md-4">
                     <label>City</label>
-                    <select placeholder="City" value={city} onChange={selCity}>
+                    <select value={city} onChange={selCity}>
                         <option>--Choose City--</option>
-                        {cities.map((e, key) => <option key={key}>{e}</option>)}
+                        {cities && cities.map((e, key) => <option key={key}>{e}</option>)}
                     </select>
                 </div>
             </div>
