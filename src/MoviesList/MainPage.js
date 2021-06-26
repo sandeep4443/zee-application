@@ -15,6 +15,8 @@ import AddRemove from '../AddRemove';
 import Genres from '../GenreSelection';
 import Calculator from '../Calculator';
 import Expenses from '../Expenses/ExpenseItems';
+import Styles from '../StyledComponents';
+import AddUser from '../AddUser';
 import '../App.css';
 
 class MainPage extends React.Component {
@@ -194,11 +196,29 @@ class MainPage extends React.Component {
     this.props.history.push('/expenses');
   }
 
+  styles = () => {
+    this.props.history.push('/styles');
+  }
+
+  addUser = () => {
+    this.props.history.push('/addUser')
+  }
+
   render() {
     const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
     return (
       <div>
         <div className="row">
+          <div className="col-md-4">
+            <AddUser
+              addUser={this.addUser}
+            />
+          </div>
+          <div className="col-md-4">
+            <Styles
+              styles={this.styles}
+            />
+          </div>
           <div className="col-md-4">
             <Expenses
               expenses={this.expenses}
