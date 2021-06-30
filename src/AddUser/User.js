@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Users from './Users';
 import UsersList from './UsersList';
 import styles from './User.module.css';
+import Carousel from '../Carousel/Carousel';
 
 const User = () => {
     const [name, setName] = useState('');
@@ -33,6 +34,7 @@ const User = () => {
 
     return (
         <>
+            <Carousel />
             <div className={styles['user-exp']}>
                 <Users
                     name={name}

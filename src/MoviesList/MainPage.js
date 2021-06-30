@@ -16,6 +16,7 @@ import Genres from '../GenreSelection';
 import Calculator from '../Calculator';
 import Expenses from '../Expenses/ExpenseItems';
 import Styles from '../StyledComponents';
+import Carousel from '../Carousel';
 import AddUser from '../AddUser';
 import '../App.css';
 
@@ -204,11 +205,20 @@ class MainPage extends React.Component {
     this.props.history.push('/addUser')
   }
 
+  carousel = () => {
+    this.props.history.push('/carousel');
+  }
+
   render() {
     const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
     return (
       <div>
         <div className="row">
+          <div className="col-md-4">
+            <Carousel
+              carousel={this.carousel}
+            />
+          </div>
           <div className="col-md-4">
             <AddUser
               addUser={this.addUser}

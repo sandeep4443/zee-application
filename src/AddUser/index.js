@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import AddUser from "./AddUser";
 
 const AddUserIndex = ({ addUser }) => (
-    <>
-        <AddUser addUser={addUser} />
-    </>
+    <AddUser addUser={addUser} />
 );
 
 export default AddUserIndex;

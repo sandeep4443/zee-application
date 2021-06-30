@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const AddElements = () => {
     const [inputValues, setValues] = useState([
@@ -48,20 +48,11 @@ const AddElements = () => {
     return (
         <div style={{ margin: 30 + 'px' }}>
 
-            <input
-                style={{ float: 'right' }}
-                type="button"
-                className="addButton"
-                value="Add"
-                onClick={addElement}
-                disabled={inputValues.length == 5}
-            />
-
             {inputValues.map((val, i) => {
                 return (
                     <div>
-                        <div className="row">
-                            <div className="col-md-3">
+                        <div className="row" style={{ marginBottom: 20 + 'px' }}>
+                            <div className="col-md-2">
                                 <label>Enter Name:</label>
                                 <input
                                     name="firstName"
@@ -70,7 +61,7 @@ const AddElements = () => {
                                     onChange={e => handleInputChange(e, i)}
                                 />
                             </div>
-                            <div className="col-md-3">
+                            <div className="col-md-2">
                                 <label>Enter Mail:</label>
                                 <input
                                     name="mail"
@@ -79,8 +70,17 @@ const AddElements = () => {
                                     onChange={e => handleInputChange(e, i)}
                                 />
                             </div>
-
-                            <div className="col-md-3">
+                            <div className="col-md-2">
+                                <input
+                                    style={{ float: 'right' }}
+                                    type="button"
+                                    className="addButton"
+                                    value="Add"
+                                    onClick={addElement}
+                                    disabled={inputValues.length == 5}
+                                />
+                            </div>
+                            <div className="col-md-2">
                                 {inputValues.length != 1 &&
                                     <input
                                         type="button"

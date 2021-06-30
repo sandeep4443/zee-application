@@ -15,6 +15,7 @@ import Calci from './Calculator/Calci';
 import Expenses from './Expenses/ExpenseItems/ExpensesList';
 import StyledComponent from './StyledComponents/StyledComponent';
 import Users from './AddUser/User';
+import Carousel from './Carousel/Carousel';
 
 
 const App = () => (
@@ -33,6 +34,7 @@ const App = () => (
         <Route path="/expenses" exact strict component={Expenses} />
         <Route path="/styles" exact strict component={StyledComponent} />
         <Route path="/addUser" exact strict component={Users} />
+        <Route path="/carousel" exact strict component={Carousel} />
     </Router>
 );
 export default App;
