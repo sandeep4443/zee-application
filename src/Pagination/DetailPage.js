@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 const DetailPage = () => {
     const pageDetails = useSelector(state => state.movieDetailReducer.data);
 
-    console.log("pageDetails", pageDetails);
-
     // if (pageDetails !== undefined) {
     //     const {
     //         Title,

@@ -86,16 +86,27 @@ class MainPage extends React.Component {
 
   findDuplicateMoviesList = () => {
     const { movieInfo } = this.props;
-    const { duplicateMoviesList } = this.state;
+    const moviesList = [];
     this.setState({ duplicate: true });
     movieInfo.forEach((el, i) => {
       movieInfo.forEach((element, index) => {
         if (i === index) return null;
         if (element.Title === el.Title) {
-          if (!duplicateMoviesList.includes(el)) { duplicateMoviesList.push(el); }
+          if (!moviesList.includes(el)) {
+            moviesList.push(el);
+          }
         }
       });
     });
+    const duplicateMoviesList = moviesList.reduce((acc, curr) => {
+      if (acc[curr.Title]) {
+        acc[curr.Title] = ++acc[curr.Title];
+      } else {
+        acc[curr.Title] = 1;
+      }
+      return acc;
+    }, {});
+    this.setState({ duplicateMoviesList });
   };
 
   findGenreList = () => {
@@ -213,7 +224,7 @@ class MainPage extends React.Component {
   render() {
     const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
     return (
-      <div>
+      <>
         <div className="row">
           <div className="col-md-4">
             <Carousel
@@ -308,7 +319,7 @@ class MainPage extends React.Component {
           findGenreList={this.findGenreList}
           genreDetails={this.state.genreDetails}
         />
-      </div>
+      </>
     );
   }
 }
