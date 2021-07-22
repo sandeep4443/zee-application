@@ -7,11 +7,13 @@ import './Carousel.css';
 
 const len = CarouselImage.length - 1;
 const Carousel = () => {
+
     const [activeIndex, setActiveIndex] = useState(0);
+
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveIndex(activeIndex === len ? 0 : activeIndex + 1);
-        }, 5000);
+        }, 3000);
         return () => clearInterval(interval)
     }, [activeIndex]);
 
@@ -22,10 +24,10 @@ const Carousel = () => {
                 prevSlide={() => setActiveIndex(activeIndex < 1 ? len : activeIndex - 1)}
                 nextSlide={() => setActiveIndex(activeIndex === len ? 0 : activeIndex + 1)}
             />
-            <Dots>
+            <Dots
                 activeIndex={activeIndex}
                 onClick={activeIndex => setActiveIndex(activeIndex)}
-            </Dots>
+            />
         </div>
     )
 }

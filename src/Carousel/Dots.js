@@ -9,7 +9,7 @@ const Dots = (
 ) => {
     return (
         <div className="all-dots">
-            {CarouselImage.map((slide, index) => (
+            {CarouselImage.map((s, index) => (
                 <span
                     key={index}
                     className={`${activeIndex === index ? "dot active-dot" : "dot"}`}

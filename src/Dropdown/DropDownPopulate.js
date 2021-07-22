@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const DropDowns = ({ movieInfo }) => {
-  const dropDownItems = movieInfo.slice(0, 5);
+const DropDowns = () => {
+
+  const moviesInfo = useSelector(state => state.listInfoReducer.moviesInfo);
+  const dropDownItems = moviesInfo.slice(0, 5);
   const [dropDown1Update, setDropDown1Item] = useState();
   const [dropDown2Update, setDropDown2Item] = useState();
 
@@ -48,17 +50,5 @@ const DropDowns = ({ movieInfo }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  movieInfo: state.listInfoReducer.moviesInfo
-})
+export default DropDowns;
 
-export default connect(mapStateToProps)(DropDowns);
-
-DropDowns.propTypes = {
-  movieInfo: PropTypes.arrayOf(
-    PropTypes.shape({
-      Title: PropTypes.string,
-      US_Gross: PropTypes.number
-    })
-  )
-}

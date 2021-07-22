@@ -8,13 +8,13 @@ const CarouselContent = (
 ) => {
     return (
         <section>
-            {CarouselImage.map((slide, index) => (
+            {CarouselImage.map(({ urls, title, description }, index) => (
                 <div key={index}
                     className={index === activeIndex ? "slides active" : "inactive"}
                 >
-                    <img className="slide-image" src={slide.urls} alt="" />
-                    <h3 className="slide-title">{slide.title}</h3>
-                    <p className="slide-text">{slide.description}</p>
+                    <img className="slide-image" src={urls} alt="" />
+                    <h3 className="slide-title">{title}</h3>
+                    <p className="slide-text">{description}</p>
                 </div>
             ))}
         </section>

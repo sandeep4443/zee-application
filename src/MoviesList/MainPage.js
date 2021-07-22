@@ -85,10 +85,11 @@ class MainPage extends React.Component {
   };
 
   findDuplicateMoviesList = () => {
+    const { movieInfo } = this.props;
     const { duplicateMoviesList } = this.state;
     this.setState({ duplicate: true });
-    this.props.movieInfo.forEach((el, i) => {
-      this.props.movieInfo.forEach((element, index) => {
+    movieInfo.forEach((el, i) => {
+      movieInfo.forEach((element, index) => {
         if (i === index) return null;
         if (element.Title === el.Title) {
           if (!duplicateMoviesList.includes(el)) { duplicateMoviesList.push(el); }
@@ -98,15 +99,15 @@ class MainPage extends React.Component {
   };
 
   findGenreList = () => {
-    const majorGenre = this.props.movieInfo.map((movie) => movie.Major_Genre);
-    const genreDetails = {};
-    majorGenre.forEach((value) => {
-      if (genreDetails[value]) {
-        genreDetails[value] += 1;
+    const { movieInfo } = this.props;
+    const genreDetails = movieInfo.reduce((acc, curr) => {
+      if (acc[curr.Major_Genre]) {
+        acc[curr.Major_Genre] = ++acc[curr.Major_Genre];
       } else {
-        genreDetails[value] = 1;
+        acc[curr.Major_Genre] = 1;
       }
-    });
+      return acc;
+    }, {});
     this.setState({ genreDetails });
   };
 
