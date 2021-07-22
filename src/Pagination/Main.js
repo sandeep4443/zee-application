@@ -50,7 +50,7 @@ class Main extends Component {
               <h2 className={headerClass}>
                 <strong className="text-secondary">
                   Selected Items:
-                            </strong>
+                </strong>
               </h2>
               {selectedItems.map((item) => (
                 <div className="row" key={item}>
@@ -72,8 +72,8 @@ class Main extends Component {
                     {totalMovies}
                   </strong>
                   {' '}
-                                  Movies
-                              </h2>
+                  Movies
+                </h2>
                 {currentPage && (
                   <span className="current-page d-inline-block h-100 pl-4 text-secondary">
                     Page
@@ -82,7 +82,7 @@ class Main extends Component {
                       {currentPage}
                     </span>
                     {' '}
-                                  /
+                    /
                     {' '}
                     <span className="font-weight-bold">
                       {totalPages}

@@ -15,6 +15,9 @@ import AddRemove from '../AddRemove';
 import Genres from '../GenreSelection';
 import Calculator from '../Calculator';
 import Expenses from '../Expenses/ExpenseItems';
+import Styles from '../StyledComponents';
+import Carousel from '../Carousel';
+import AddUser from '../AddUser';
 import '../App.css';
 
 class MainPage extends React.Component {
@@ -82,10 +85,11 @@ class MainPage extends React.Component {
   };
 
   findDuplicateMoviesList = () => {
+    const { movieInfo } = this.props;
     const { duplicateMoviesList } = this.state;
     this.setState({ duplicate: true });
-    this.props.movieInfo.forEach((el, i) => {
-      this.props.movieInfo.forEach((element, index) => {
+    movieInfo.forEach((el, i) => {
+      movieInfo.forEach((element, index) => {
         if (i === index) return null;
         if (element.Title === el.Title) {
           if (!duplicateMoviesList.includes(el)) { duplicateMoviesList.push(el); }
@@ -95,15 +99,15 @@ class MainPage extends React.Component {
   };
 
   findGenreList = () => {
-    const majorGenre = this.props.movieInfo.map((movie) => movie.Major_Genre);
-    const genreDetails = {};
-    majorGenre.forEach((value) => {
-      if (genreDetails[value]) {
-        genreDetails[value] += 1;
+    const { movieInfo } = this.props;
+    const genreDetails = movieInfo.reduce((acc, curr) => {
+      if (acc[curr.Major_Genre]) {
+        acc[curr.Major_Genre] = ++acc[curr.Major_Genre];
       } else {
-        genreDetails[value] = 1;
+        acc[curr.Major_Genre] = 1;
       }
-    });
+      return acc;
+    }, {});
     this.setState({ genreDetails });
   };
 
@@ -194,11 +198,38 @@ class MainPage extends React.Component {
     this.props.history.push('/expenses');
   }
 
+  styles = () => {
+    this.props.history.push('/styles');
+  }
+
+  addUser = () => {
+    this.props.history.push('/addUser')
+  }
+
+  carousel = () => {
+    this.props.history.push('/carousel');
+  }
+
   render() {
     const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
     return (
       <div>
         <div className="row">
+          <div className="col-md-4">
+            <Carousel
+              carousel={this.carousel}
+            />
+          </div>
+          <div className="col-md-4">
+            <AddUser
+              addUser={this.addUser}
+            />
+          </div>
+          <div className="col-md-4">
+            <Styles
+              styles={this.styles}
+            />
+          </div>
           <div className="col-md-4">
             <Expenses
               expenses={this.expenses}

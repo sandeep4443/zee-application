@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import './MoviesCard.css';
+import { useDispatch } from 'react-redux';
 import { pageDetails } from '../actions/pageDetails';
 
 const MovieCard = ({
-  movie, value, history, detailPage,
+  movie, value, history,
 }) => {
+
+  const dispatch = useDispatch();
   const navigateDetailPage = () => {
-    detailPage({ movie, value });
+    dispatch(pageDetails({ movie, value }));
     history.push(`/pagination/${value + 1}/${movie.Title}`);
   }
   return (
     <>
-      <div className="col-sm-6 col-md-4 country-card" onClick={() => navigateDetailPage()}>
+      <div className="col-sm-6 col-md-4 country-card country-hover" onClick={() => navigateDetailPage()}>
         <div className="country-card-container border-gray rounded border mx-2 my-3 d-flex flex-row align-items-center p-0 bg-light">
           <div className="h-100 position-relative border-gray border-right px-2 bg-white rounded-left">
             <img
@@ -32,17 +35,12 @@ const MovieCard = ({
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  detailPage: (items) => {
-    dispatch(pageDetails(items))
-  },
-})
 
-export default connect(null, mapDispatchToProps)(MovieCard);
+
+export default MovieCard;
 
 MovieCard.propTypes = {
   movie: PropTypes.object,
   value: PropTypes.string,
-  history: PropTypes.object,
-  detailPage: PropTypes.func
+  history: PropTypes.object
 }

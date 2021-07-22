@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selecItems } from '../actions/selItems';
 import styles from '../App.css';
 
 
-const CheckBoxes = ({
-  movieInfo,
-  selItems,
-  history,
-}) => {
-  const [movieinfo] = useState(movieInfo.slice(0, 5));
+const CheckBoxes = ({ history }) => {
+
+  const moviesInfo = useSelector(state => state.listInfoReducer.moviesInfo);
+  const dispatch = useDispatch();
+
+  const [movieinfo] = useState(moviesInfo.slice(0, 5));
   const [selectedItems, setSelectedItems] = useState([]);
   const [enableCheckAll, setEnableCheckAll] = useState(false);
+
+
 
   const handleChange = (event) => {
     const { checked } = event.target;
@@ -51,7 +53,7 @@ const CheckBoxes = ({
   }
 
   const pagination = () => {
-    selItems(selectedItems);
+    dispatch(selecItems(selectedItems));
     history.push('/pagination');
   };
 
@@ -101,26 +103,8 @@ const CheckBoxes = ({
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  selItems: (items) => {
-    dispatch(selecItems(items))
-  },
-})
-
-const mapStateToProps = state => ({
-  movieInfo: state.listInfoReducer.moviesInfo
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CheckBoxes);
-
+export default CheckBoxes;
 
 CheckBoxes.propTypes = {
-  movieInfo: PropTypes.arrayOf(
-    PropTypes.shape({
-      Title: PropTypes.string,
-      US_Gross: PropTypes.number
-    })
-  ),
-  selItems: PropTypes.func,
   history: PropTypes.object
 }
