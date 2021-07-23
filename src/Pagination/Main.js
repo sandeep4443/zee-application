@@ -71,19 +71,15 @@ class Main extends Component {
                   <strong className="text-secondary">
                     {totalMovies}
                   </strong>
-                  {' '}
                   Movies
                 </h2>
                 {currentPage && (
                   <span className="current-page d-inline-block h-100 pl-4 text-secondary">
                     Page
-                    {' '}
                     <span className="font-weight-bold">
                       {currentPage}
                     </span>
-                    {' '}
                     /
-                    {' '}
                     <span className="font-weight-bold">
                       {totalPages}
                     </span>

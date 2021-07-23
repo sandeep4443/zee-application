@@ -47,21 +47,17 @@ const DetailPage = () => {
                         <tr>
                             <td>
                                 {pageDetails.movie.Title}
-                                {' '}
                             </td>
                             <td>
                                 {pageDetails.movie.US_Gross}
-                                {' '}
                             </td>
                             <td>{pageDetails.movie.Worldwide_Gross}</td>
                             <td>
                                 {pageDetails.movie.Distributor}
-                                {' '}
                             </td>
                             <td>{pageDetails.movie.Director}</td>
                             <td>
                                 {pageDetails.movie.Major_Genre}
-                                {' '}
                             </td>
                             <td>{pageDetails.movie.Production_Budget}</td>
                             <td>{pageDetails.movie.Release_Date}</td>
