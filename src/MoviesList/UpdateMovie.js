@@ -19,7 +19,7 @@ const UpdateMovie = ({
       style={{ marginLeft: `${20}px` }}
     >
       Update Movie
-        </button>
+    </button>
   </div>
 )
 export default UpdateMovie;

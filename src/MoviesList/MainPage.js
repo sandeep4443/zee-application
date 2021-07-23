@@ -1,6 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import TableList from './TableList';
 import DuplicateMovies from './DuplicateMoviesList';
 import GenreList from './GenreList';
@@ -20,39 +19,37 @@ import Carousel from '../Carousel';
 import AddUser from '../AddUser';
 import '../App.css';
 
-class MainPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movieinfo: [],
-      resultsFound: false,
-      moviesCount: 0,
-      newTitle: '',
-      Release_Date: '',
-      Distributor: '',
-      Major_Genre: '',
-      Director: '',
-      duplicateMoviesList: [],
-      duplicate: false,
-      editMovieName: {},
-      genreDetails: {},
-      titleValue: '',
-      updateMovieButtonDisabled: true,
-    };
-  }
 
-  componentDidMount() {
-    const { movieInfo } = this.props;
-    this.setState({
-      movieinfo: movieInfo.slice(0, 20),
-    })
-  }
+const MainPage = (props) => {
 
-  findMovies = e => {
-    const movieinfo = this.props.movieInfo;
+  const movieInfo = useSelector(state => state.listInfoReducer.moviesInfo);
+
+  const [newMovieInfo, setMovieInfo] = useState([]);
+  const [resultsFound, setResultsFound] = useState(false);
+  const [moviesCount, setMoviesCount] = useState(0);
+  const [Title, setNewTitle] = useState('');
+  const [Release_Date, setReleaseDate] = useState('');
+  const [Distributor, setDistributor] = useState('');
+  const [Major_Genre, setMajorGenre] = useState('');
+  const [Director, setDirector] = useState('');
+  const [duplicateMoviesList, setDuplicateMoviesList] = useState([]);
+  const [duplicate, setDuplicate] = useState(false);
+  const [newEditMovieName, setEditMovieName] = useState({});
+  const [genreDetails, setGenreDetails] = useState({});
+  const [titleValue, setTitleValue] = useState('');
+  const [updateMovieButtonDisabled, setUpdateMovieButtonDisabled] = useState(true);
+  const [editableMovie, setEditableMovie] = useState(false);
+
+  const booleanValue = (moviesCount >= 0 && resultsFound);
+
+  useEffect(() => {
+    setMovieInfo(movieInfo.slice(0, 20));
+  }, [true]);
+
+  const findMovies = e => {
     const findValue = e.target.value;
-    this.setState({ titleValue: findValue });
-    const filterValue = movieinfo.filter((title) => {
+    setTitleValue(findValue);
+    const filterValue = movieInfo.filter((title) => {
       const titleMovies = title.Title;
       if (titleMovies !== null) {
         const movie = titleMovies.toString().toLowerCase();
@@ -60,34 +57,28 @@ class MainPage extends React.Component {
       }
       return null;
     });
-    this.setState({
-      moviesCount: filterValue.length,
-      resultsFound: true,
-    });
+    setMoviesCount(filterValue.length);
+    setResultsFound(true);
+
     if (findValue !== '') {
-      this.setState({ movieinfo: filterValue });
+      setMovieInfo(filterValue)
     } else {
-      this.setState({
-        movieinfo: this.props.movieInfo.slice(0, 20),
-      });
+      setMovieInfo(movieInfo.slice(0, 20));
     }
   };
 
-  addMovie = () => {
-    const {
-      movieinfo, Title, Release_Date, Distributor, Major_Genre, Director,
-    } = this.state;
+  const addMovie = () => {
+    const movieinfo = movieInfo;
     const newMovie = {
       Title, Release_Date, Distributor, Major_Genre, Director,
     };
     movieinfo.push(newMovie);
-    this.setState({ movieinfo });
+    setMovieInfo(movieInfo);
   };
 
-  findDuplicateMoviesList = () => {
-    const { movieInfo } = this.props;
+  const findDuplicateMoviesList = () => {
     const moviesList = [];
-    this.setState({ duplicate: true });
+    setDuplicate(true);
     movieInfo.forEach((el, i) => {
       movieInfo.forEach((element, index) => {
         if (i === index) return null;
@@ -106,11 +97,10 @@ class MainPage extends React.Component {
       }
       return acc;
     }, {});
-    this.setState({ duplicateMoviesList });
+    setDuplicateMoviesList(duplicateMoviesList)
   };
 
-  findGenreList = () => {
-    const { movieInfo } = this.props;
+  const findGenreList = () => {
     const genreDetails = movieInfo.reduce((acc, curr) => {
       if (acc[curr.Major_Genre]) {
         acc[curr.Major_Genre] = ++acc[curr.Major_Genre];
@@ -119,222 +109,216 @@ class MainPage extends React.Component {
       }
       return acc;
     }, {});
-    this.setState({ genreDetails });
+    setGenreDetails(genreDetails);
   };
 
-  updateMovieName = e => {
-    if (e.target.value !== '') {
-      this.setState({
-        updateMovieButtonDisabled: false,
-      })
-    } else {
-      this.setState({ updateMovieButtonDisabled: true })
-    }
-    this.setState({ newTitle: e.target.value });
+  const updateMovieName = e => {
+    newMovieInfo.forEach((element) => {
+      if ((element.Title !== e.target.value) && editableMovie) {
+        setUpdateMovieButtonDisabled(false);
+      } else {
+        setUpdateMovieButtonDisabled(true);
+      }
+    });
+    setNewTitle(e.target.value);
   };
 
-  updateMovieTitle = () => {
-    const { movieinfo, newTitle, editMovieName } = this.state;
-    const moviesUpdate = movieinfo.map((movie) => movie.Title);
-    const isValid = moviesUpdate.includes(newTitle);
+  const updateMovieTitle = () => {
+    const moviesUpdate = newMovieInfo.map((movie) => movie.Title);
+    const isValid = moviesUpdate.includes(Title);
+    console.log("Title", Title);
     if (isValid) {
       alert('Movie With Title Already Exists');
+      setUpdateMovieButtonDisabled(true);
     } else {
-      const editedTitie = { ...editMovieName, Title: newTitle };
-      const newMovies = movieinfo.filter((movie) => movie !== editMovieName);
-      this.setState({ movieinfo: [...newMovies, editedTitie] });
+      const editedTitle = { ...newEditMovieName, Title };
+      const newMovies = newMovieInfo.filter((movie) => movie !== newEditMovieName);
+      setMovieInfo([...newMovies, editedTitle])
     }
     document.getElementById('updatetext').value = '';
   };
 
-  editMovie = index => {
-    const { movieinfo } = this.state;
-    const editMovieName = movieinfo[index];
-    this.setState({ editMovieName });
-    if (this.state.editMovieName.Title !== '') {
-      this.setState({ updateMovieButtonDisabled: false })
-    } else {
-      this.setState({ updateMovieButtonDisabled: true })
-    }
+  const editMovie = index => {
+    setEditableMovie(true);
+    const editMovieName = newMovieInfo[index];
+    setEditMovieName(editMovieName);
+    console.log("movie info", newMovieInfo);
+    newMovieInfo.forEach((element) => {
+      console.log("element.Title", element.Title);
+      if (newEditMovieName.Title !== '' && !!editMovieName.Title.includes(element.Title)) {
+        setUpdateMovieButtonDisabled(false);
+      } else {
+        setUpdateMovieButtonDisabled(true);
+      }
+    });
   };
 
-  deleteMovies = index => {
-    const { movieinfo } = this.state;
-    const deleteFilterValue = movieinfo.filter((movie) => movie !== movieinfo[index]);
-    this.setState({ movieinfo: deleteFilterValue });
+  const deleteMovies = index => {
+    const deleteFilterValue = newMovieInfo.filter((movie) => movie !== movieInfo[index]);
+    setMovieInfo(deleteFilterValue);
   };
 
-  findGetValue = e => {
-    const getTitle = e.target.value;
-    this.setState({ [e.target.id]: getTitle });
+  /**
+   * 
+   * to work on this
+   */
+  // const findGetValue = e => {
+  //   const getTitle = e.target.value;
+  //   setState({ [e.target.id]: getTitle });   
+  // };
+
+
+  const checkbox = () => {
+    props.history.push('/checkBoxes');
   };
 
-  checkbox = () => {
-    this.props.history.push('/checkBoxes');
+  const dropDown = () => {
+    props.history.push('/dropDowns');
   };
 
-  dropDown = () => {
-    this.props.history.push('/dropDowns');
+  const keyboard = () => {
+    props.history.push('/keyboard');
   };
 
-  keyboard = () => {
-    this.props.history.push('/keyboard');
+  const hooks = () => {
+    props.history.push('/hooks');
   };
 
-  hooks = () => {
-    this.props.history.push('/hooks');
-  };
-
-  breakingBad = () => {
-    this.props.history.push('/breakingBad');
+  const breakingBad = () => {
+    props.history.push('/breakingBad');
   }
 
-  spinner = () => {
-    this.props.history.push('/spinner');
+  const spinner = () => {
+    props.history.push('/spinner');
   }
 
-  addRemove = () => {
-    this.props.history.push('/addRemove');
+  const addRemove = () => {
+    props.history.push('/addRemove');
   }
 
-  genre = () => {
-    this.props.history.push('/genres');
+  const genre = () => {
+    props.history.push('/genres');
   }
 
-  calculator = () => {
-    this.props.history.push('/calculator');
+  const calculator = () => {
+    props.history.push('/calculator');
   }
 
-  expenses = () => {
-    this.props.history.push('/expenses');
+  const expenses = () => {
+    props.history.push('/expenses');
   }
 
-  styles = () => {
-    this.props.history.push('/styles');
+  const styles = () => {
+    props.history.push('/styles');
   }
 
-  addUser = () => {
-    this.props.history.push('/addUser')
+  const addUser = () => {
+    props.history.push('/addUser')
   }
 
-  carousel = () => {
-    this.props.history.push('/carousel');
+  const carousel = () => {
+    props.history.push('/carousel');
   }
 
-  render() {
-    const booleanValue = (this.state.moviesCount >= 0 && this.state.resultsFound);
-    return (
-      <>
-        <div className="row">
-          <div className="col-md-4">
-            <Carousel
-              carousel={this.carousel}
-            />
-          </div>
-          <div className="col-md-4">
-            <AddUser
-              addUser={this.addUser}
-            />
-          </div>
-          <div className="col-md-4">
-            <Styles
-              styles={this.styles}
-            />
-          </div>
-          <div className="col-md-4">
-            <Expenses
-              expenses={this.expenses}
-            />
-          </div>
-          <div className="col-md-4">
-            <Genres
-              genre={this.genre}
-            />
-          </div>
-          <div className="col-md-4">
-            <Hooks
-              hooks={this.hooks}
-            />
-          </div>
-          <div className="col-md-4">
-            <BreakingBad
-              breakingBad={this.breakingBad}
-            />
-          </div>
-          <div className="col-md-4">
-            <CheckBox
-              checkbox={this.checkbox}
-              pagination={this.pagination}
-            />
-          </div>
-          <div className="col-md-4">
-            <DropDowns
-              dropDown={this.dropDown}
-            />
-          </div>
-          <div className="col-md-4">
-            <KeyEvents
-              keyEvents={this.keyboard}
-            />
-          </div>
-          <div className="col-md-4">
-            <AddRemove
-              addRemove={this.addRemove}
-            />
-          </div>
-          <div className="col-md-4">
-            <Calculator
-              calculator={this.calculator}
-            />
-          </div>
+  return (
+    <>
+      <div className="row">
+        <div className="col-md-4">
+          <Carousel
+            carousel={carousel}
+          />
         </div>
-        <AddMovie
-          findGetValue={this.findGetValue}
-          addMovie={this.addMovie}
-        />
+        <div className="col-md-4">
+          <AddUser
+            addUser={addUser}
+          />
+        </div>
+        <div className="col-md-4">
+          <Styles
+            styles={styles}
+          />
+        </div>
+        <div className="col-md-4">
+          <Expenses
+            expenses={expenses}
+          />
+        </div>
+        <div className="col-md-4">
+          <Genres
+            genre={genre}
+          />
+        </div>
+        <div className="col-md-4">
+          <Hooks
+            hooks={hooks}
+          />
+        </div>
+        <div className="col-md-4">
+          <BreakingBad
+            breakingBad={breakingBad}
+          />
+        </div>
+        <div className="col-md-4">
+          <CheckBox
+            checkbox={checkbox}
+          // pagination={pagination}
+          />
+        </div>
+        <div className="col-md-4">
+          <DropDowns
+            dropDown={dropDown}
+          />
+        </div>
+        <div className="col-md-4">
+          <KeyEvents
+            keyEvents={keyboard}
+          />
+        </div>
+        <div className="col-md-4">
+          <AddRemove
+            addRemove={addRemove}
+          />
+        </div>
+        <div className="col-md-4">
+          <Calculator
+            calculator={calculator}
+          />
+        </div>
+      </div>
+      <AddMovie
+        // findGetValue={findGetValue}
+        addMovie={addMovie}
+      />
 
-        <UpdateMovie
-          updateMovieName={this.updateMovieName}
-          title={this.state.editMovieName.Title}
-          updateMovieTitle={this.updateMovieTitle}
-          updateMovieButtonDisabled={this.state.updateMovieButtonDisabled}
-        />
+      <UpdateMovie
+        updateMovieName={updateMovieName}
+        title={newEditMovieName.Title}
+        updateMovieTitle={updateMovieTitle}
+        updateMovieButtonDisabled={updateMovieButtonDisabled}
+      />
 
-        <TableList
-          movieinfo={this.state.movieinfo}
-          editMovie={this.editMovie}
-          deleteMovies={this.deleteMovies}
-          booleanValue={booleanValue}
-          moviesCount={this.state.moviesCount}
-          findMovies={this.findMovies}
-          titleValue={this.state.titleValue}
-        />
+      <TableList
+        movieinfo={newMovieInfo}
+        editMovie={editMovie}
+        deleteMovies={deleteMovies}
+        booleanValue={booleanValue}
+        moviesCount={moviesCount}
+        findMovies={findMovies}
+        titleValue={titleValue}
+      />
 
-        <DuplicateMovies
-          duplicateMoviesList={this.state.duplicateMoviesList}
-          findDuplicateMoviesList={this.findDuplicateMoviesList}
-        />
+      <DuplicateMovies
+        duplicateMoviesList={duplicateMoviesList}
+        findDuplicateMoviesList={findDuplicateMoviesList}
+      />
 
-        <GenreList
-          findGenreList={this.findGenreList}
-          genreDetails={this.state.genreDetails}
-        />
-      </>
-    );
-  }
+      <GenreList
+        findGenreList={findGenreList}
+        genreDetails={genreDetails}
+      />
+    </>
+  );
+
 }
-const mapStateToProps = state => ({
-  movieInfo: state.listInfoReducer.moviesInfo
-})
 
-export default connect(mapStateToProps)(MainPage);
-
-MainPage.propTypes = {
-  movieInfo: PropTypes.arrayOf(
-    PropTypes.shape({
-      Title: PropTypes.string,
-      US_Gross: PropTypes.number
-    })
-  ),
-  history: PropTypes.object
-}
+export default MainPage;
