@@ -28,15 +28,11 @@ const MainPage = (props) => {
   const [resultsFound, setResultsFound] = useState(false);
   const [moviesCount, setMoviesCount] = useState(0);
   const [Title, setNewTitle] = useState('');
-  const [Release_Date, setReleaseDate] = useState('');
-  const [Distributor, setDistributor] = useState('');
-  const [Major_Genre, setMajorGenre] = useState('');
-  const [Director, setDirector] = useState('');
   const [duplicateMoviesList, setDuplicateMoviesList] = useState([]);
-  const [duplicate, setDuplicate] = useState(false);
   const [newEditMovieName, setEditMovieName] = useState({});
   const [genreDetails, setGenreDetails] = useState({});
   const [titleValue, setTitleValue] = useState('');
+  const [originalValue, setValue] = useState({ Release_Date: '', Title: '', Distributor: '', Major_Genre: '', Director: '' });
   const [updateMovieButtonDisabled, setUpdateMovieButtonDisabled] = useState(true);
   const [editableMovie, setEditableMovie] = useState(false);
 
@@ -44,7 +40,7 @@ const MainPage = (props) => {
 
   useEffect(() => {
     setMovieInfo(movieInfo.slice(0, 20));
-  }, [true]);
+  }, []);
 
   const findMovies = e => {
     const findValue = e.target.value;
@@ -68,17 +64,26 @@ const MainPage = (props) => {
   };
 
   const addMovie = () => {
-    const movieinfo = movieInfo;
+    let pushedElements = [];
     const newMovie = {
-      Title, Release_Date, Distributor, Major_Genre, Director,
+      Title: originalValue.Title,
+      Release_Date: originalValue.Release_Date,
+      Distributor: originalValue.Distributor,
+      Major_Genre: originalValue.Major_Genre,
+      Director: originalValue.Director,
     };
-    movieinfo.push(newMovie);
-    setMovieInfo(movieInfo);
+    pushedElements.push(...newMovieInfo, newMovie);
+    setMovieInfo(pushedElements);
+  };
+
+
+  const findGetValue = e => {
+    const getTitle = e.target.value;
+    setValue({ ...originalValue, [e.target.id]: getTitle });
   };
 
   const findDuplicateMoviesList = () => {
     const moviesList = [];
-    setDuplicate(true);
     movieInfo.forEach((el, i) => {
       movieInfo.forEach((element, index) => {
         if (i === index) return null;
@@ -126,7 +131,6 @@ const MainPage = (props) => {
   const updateMovieTitle = () => {
     const moviesUpdate = newMovieInfo.map((movie) => movie.Title);
     const isValid = moviesUpdate.includes(Title);
-    console.log("Title", Title);
     if (isValid) {
       alert('Movie With Title Already Exists');
       setUpdateMovieButtonDisabled(true);
@@ -142,9 +146,7 @@ const MainPage = (props) => {
     setEditableMovie(true);
     const editMovieName = newMovieInfo[index];
     setEditMovieName(editMovieName);
-    console.log("movie info", newMovieInfo);
     newMovieInfo.forEach((element) => {
-      console.log("element.Title", element.Title);
       if (newEditMovieName.Title !== '' && !!editMovieName.Title.includes(element.Title)) {
         setUpdateMovieButtonDisabled(false);
       } else {
@@ -157,16 +159,6 @@ const MainPage = (props) => {
     const deleteFilterValue = newMovieInfo.filter((movie) => movie !== movieInfo[index]);
     setMovieInfo(deleteFilterValue);
   };
-
-  /**
-   * 
-   * to work on this
-   */
-  // const findGetValue = e => {
-  //   const getTitle = e.target.value;
-  //   setState({ [e.target.id]: getTitle });   
-  // };
-
 
   const checkbox = () => {
     props.history.push('/checkBoxes');
@@ -286,7 +278,7 @@ const MainPage = (props) => {
         </div>
       </div>
       <AddMovie
-        // findGetValue={findGetValue}
+        findGetValue={findGetValue}
         addMovie={addMovie}
       />
 
