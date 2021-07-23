@@ -5,6 +5,7 @@ import './MultiSelect.css';
 const MultiSelect = () => {
     const [data] = useState(MultiSelectData);
     const [displayData, setDisplayData] = useState(false);
+    const [textValue, setTextValue] = useState('');
     const [results, setResults] = useState([]);
     const [selValue] = useState([]);
     const [itemsHere, setItemsHere] = useState(false);
@@ -13,6 +14,7 @@ const MultiSelect = () => {
     const searchText = (event) => {
         setDisplayData(true);
         const { value } = event.target;
+        setTextValue(value);
         const filterValue = data.filter((title) => {
             const countryNames = title.name;
             if (countryNames !== null) {
@@ -21,8 +23,6 @@ const MultiSelect = () => {
                 return names.indexOf(value.toLowerCase()) !== -1;
             }
         });
-
-
         /**
          * to get a list of selected items we are using filtered function
          */
@@ -33,16 +33,17 @@ const MultiSelect = () => {
         /**
          * filteredItems will display items hiding already selected items
          */
-
         const filteredItems = filterValue.filter(el => {
             return filtered.indexOf(el) === -1;
         });
         setResults(filteredItems);
     }
 
+
     const selectedValue = (e) => {
         const value = e.target.innerText;
         setDisplayData(false);
+        setTextValue('');
         selValue.push(value);
         if (selValue.length >= 1) {
             setItemsHere(true)
@@ -55,7 +56,6 @@ const MultiSelect = () => {
         setEnableContent(true);
     }
 
-
     return (
         <div className="instructions">
             {(itemsHere && selValue) && selValue.map((item) => (
@@ -65,6 +65,7 @@ const MultiSelect = () => {
             ))}
             <div className="dropdown">
                 <button onClick={contentEnabled} className="dropbtn">Dropdown</button>
+
                 {enableContent && <div id="myDropdown" className="dropdown-content">
                     <input
                         type="search"
@@ -72,6 +73,7 @@ const MultiSelect = () => {
                         placeholder="Search states"
                         className="dropdown-search"
                         onChange={searchText}
+                        value={textValue}
                     />
 
                     {displayData && results.map((dat, index) => (
