@@ -5,8 +5,8 @@ import DuplicateMovies from './DuplicateMoviesList';
 import GenreList from './GenreList';
 import AddMovie from './AddMovie';
 import UpdateMovie from './UpdateMovie';
+import SideMenu from './SideMenu';
 import '../App.css';
-import MainPageButtons from './MainPageButtons';
 
 
 const MainPage = (props) => {
@@ -21,7 +21,14 @@ const MainPage = (props) => {
   const [newEditMovieName, setEditMovieName] = useState({});
   const [genreDetails, setGenreDetails] = useState({});
   const [titleValue, setTitleValue] = useState('');
-  const [originalValue, setValue] = useState({ Release_Date: '', Title: '', Distributor: '', Major_Genre: '', Director: '' });
+  const [isToggleMenu, setToggleMenu] = useState(false);
+  const [originalValue, setValue] = useState({
+    Release_Date: '',
+    Title: '',
+    Distributor: '',
+    Major_Genre: '',
+    Director: ''
+  });
   const [updateMovieButtonDisabled, setUpdateMovieButtonDisabled] = useState(true);
   const [editableMovie, setEditableMovie] = useState(false);
 
@@ -169,10 +176,6 @@ const MainPage = (props) => {
     props.history.push('/breakingBad');
   }
 
-  const spinner = () => {
-    props.history.push('/spinner');
-  }
-
   const addRemove = () => {
     props.history.push('/addRemove');
   }
@@ -201,8 +204,65 @@ const MainPage = (props) => {
     props.history.push('/carousel');
   }
 
+  const toggleMenu = () => {
+    setToggleMenu(!isToggleMenu)
+  }
+
   return (
     <>
+
+      <SideMenu
+        carousel={carousel}
+        addUser={addUser}
+        styles={styles}
+        expenses={expenses}
+        genre={genre}
+        hooks={hooks}
+        breakingBad={breakingBad}
+        checkbox={checkbox}
+        dropDown={dropDown}
+        keyboard={keyboard}
+        addRemove={addRemove}
+        calculator={calculator}
+        isToggleMenu={isToggleMenu}
+      />
+
+      <div style={{ marginLeft: 5 + '%' }}>
+        <AddMovie
+          findGetValue={findGetValue}
+          addMovie={addMovie}
+        />
+
+        <UpdateMovie
+          updateMovieName={updateMovieName}
+          title={newEditMovieName.Title}
+          updateMovieTitle={updateMovieTitle}
+          updateMovieButtonDisabled={updateMovieButtonDisabled}
+        />
+
+        <TableList
+          movieinfo={newMovieInfo}
+          editMovie={editMovie}
+          deleteMovies={deleteMovies}
+          booleanValue={booleanValue}
+          moviesCount={moviesCount}
+          findMovies={findMovies}
+          titleValue={titleValue}
+        />
+
+        <DuplicateMovies
+          duplicateMoviesList={duplicateMoviesList}
+          findDuplicateMoviesList={findDuplicateMoviesList}
+        />
+
+        <GenreList
+          findGenreList={findGenreList}
+          genreDetails={genreDetails}
+        />
+
+      </div>
+
+      {/* 
       <MainPageButtons
         carousel={carousel}
         addUser={addUser}
@@ -216,38 +276,8 @@ const MainPage = (props) => {
         keyboard={keyboard}
         addRemove={addRemove}
         calculator={calculator}
-      />
-      <AddMovie
-        findGetValue={findGetValue}
-        addMovie={addMovie}
-      />
+      /> */}
 
-      <UpdateMovie
-        updateMovieName={updateMovieName}
-        title={newEditMovieName.Title}
-        updateMovieTitle={updateMovieTitle}
-        updateMovieButtonDisabled={updateMovieButtonDisabled}
-      />
-
-      <TableList
-        movieinfo={newMovieInfo}
-        editMovie={editMovie}
-        deleteMovies={deleteMovies}
-        booleanValue={booleanValue}
-        moviesCount={moviesCount}
-        findMovies={findMovies}
-        titleValue={titleValue}
-      />
-
-      <DuplicateMovies
-        duplicateMoviesList={duplicateMoviesList}
-        findDuplicateMoviesList={findDuplicateMoviesList}
-      />
-
-      <GenreList
-        findGenreList={findGenreList}
-        genreDetails={genreDetails}
-      />
     </>
   );
 
