@@ -12,7 +12,8 @@ const SideMenu = ({
     dropDown,
     keyboard,
     addRemove,
-    calculator
+    calculator,
+    crud
 }) => {
     return (
         <>
@@ -20,6 +21,7 @@ const SideMenu = ({
                 <div className="settings"></div>
                 <div className="scrollbar" id="style-1">
                     <ul>
+                        <a><li className="darkerlishadow" href="#" onClick={crud}><i className="fa fa-car"></i><span className="nav-text">Crud Operations</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={carousel}><i className="fa fa-car"></i><span className="nav-text">Carousel</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={addUser}><i className="fa fa-user"></i><span className="nav-text">Add User</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={styles}><i className="fa fa-wrench"></i><span className="nav-text">Styles</span></li></a>

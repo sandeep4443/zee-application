@@ -21,7 +21,6 @@ const MainPage = (props) => {
   const [newEditMovieName, setEditMovieName] = useState({});
   const [genreDetails, setGenreDetails] = useState({});
   const [titleValue, setTitleValue] = useState('');
-  const [isToggleMenu, setToggleMenu] = useState(false);
   const [originalValue, setValue] = useState({
     Release_Date: '',
     Title: '',
@@ -203,9 +202,8 @@ const MainPage = (props) => {
   const carousel = () => {
     props.history.push('/carousel');
   }
-
-  const toggleMenu = () => {
-    setToggleMenu(!isToggleMenu)
+  const crud = () => {
+    props.history.push('./crud');
   }
 
   return (
@@ -224,7 +222,7 @@ const MainPage = (props) => {
         keyboard={keyboard}
         addRemove={addRemove}
         calculator={calculator}
-        isToggleMenu={isToggleMenu}
+        crud={crud}
       />
 
       <div style={{ marginLeft: 5 + '%' }}>
@@ -261,23 +259,6 @@ const MainPage = (props) => {
         />
 
       </div>
-
-      {/* 
-      <MainPageButtons
-        carousel={carousel}
-        addUser={addUser}
-        styles={styles}
-        expenses={expenses}
-        genre={genre}
-        hooks={hooks}
-        breakingBad={breakingBad}
-        checkbox={checkbox}
-        dropDown={dropDown}
-        keyboard={keyboard}
-        addRemove={addRemove}
-        calculator={calculator}
-      /> */}
-
     </>
   );
 
