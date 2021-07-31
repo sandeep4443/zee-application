@@ -13,7 +13,8 @@ const SideMenu = ({
     keyboard,
     addRemove,
     calculator,
-    crud
+    empData,
+    cards
 }) => {
     return (
         <>
@@ -21,10 +22,8 @@ const SideMenu = ({
                 <div className="settings"></div>
                 <div className="scrollbar" id="style-1">
                     <ul>
-                        <a><li className="darkerlishadow" href="#" onClick={crud}><i className="fa fa-car"></i><span className="nav-text">Crud Operations</span></li></a>
-                        <a><li className="darkerlishadow" href="#" onClick={carousel}><i className="fa fa-car"></i><span className="nav-text">Carousel</span></li></a>
+                        <a><li className="darkerlishadow" href="#" onClick={empData}><i className="fa fa-user-circle"></i><span className="nav-text">Employee Details</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={addUser}><i className="fa fa-user"></i><span className="nav-text">Add User</span></li></a>
-                        <a><li className="darkerlishadow" href="#" onClick={styles}><i className="fa fa-wrench"></i><span className="nav-text">Styles</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={expenses}><i className="fa fa-warning"></i><span className="nav-text">Expenses</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={genre}><i className="fa fa-venus"></i><span className="nav-text">Genre</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={hooks}><i className="fa fa-rocket"></i><span className="nav-text">Hooks</span></li></a>
@@ -34,7 +33,10 @@ const SideMenu = ({
                         <a><li className="darkerlishadow" href="#" onClick={keyboard}><i className="fa fa-keyboard-o"></i><span className="nav-text">KeyBoard</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={addRemove}><i className="fa fa-remove"></i><span className="nav-text">Add Remove</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={calculator}><i className="fa fa-calculator"></i><span className="nav-text">Calculator</span></li></a>
-                        <li>
+                        <a><li className="darkerlishadow" href="#" onClick={carousel}><i className="fa fa-car"></i><span className="nav-text">Carousel</span></li></a>
+                        <a><li className="darkerlishadow" href="#" onClick={cards}><i className="fa fa-address-card"></i><span className="nav-text">Cards</span></li></a>
+                        <a><li className="darkerlishadow" href="#" onClick={styles}><i className="fa fa-wrench"></i><span className="nav-text">Styles</span></li></a>
+                        <li className="darkerlishadow">
                             <a href="http://startific.com">
                                 <i className="fa fa-heart-o fa-lg"></i>
                                 <span className="share">

@@ -16,7 +16,8 @@ import Expenses from './Expenses/ExpenseItems/ExpensesList';
 import StyledComponent from './StyledComponents/StyledComponent';
 import Users from './AddUser/User';
 import Carousel from './Carousel/Carousel';
-import Crud from './Crud/MainPage';
+import Employee from './EmployeeData/MainPage';
+import Card from './Cards/Card';
 
 
 const App = () => (
@@ -36,7 +37,8 @@ const App = () => (
         <Route path="/styles" exact strict component={StyledComponent} />
         <Route path="/addUser" exact strict component={Users} />
         <Route path="/carousel" exact strict component={Carousel} />
-        <Route path="/crud" exact strict component={Crud} />
+        <Route path="/employee" exact strict component={Employee} />
+        <Route path="/cards" exact strict component={Card} />
     </Router>
 );
 export default App;

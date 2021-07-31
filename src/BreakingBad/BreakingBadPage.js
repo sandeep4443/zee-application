@@ -3,7 +3,8 @@ import axios from 'axios';
 import Header from './Header';
 import Search from './Search';
 import Characters from './Characters/CharacterGrid';
-import image from '../img/bg.jpg'
+import image from '../img/bg.jpg';
+import './BreakingBad.css';
 
 const BreakingBadPage = () => {
     const [items, setItems] = useState([]);

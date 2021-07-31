@@ -202,8 +202,12 @@ const MainPage = (props) => {
   const carousel = () => {
     props.history.push('/carousel');
   }
-  const crud = () => {
-    props.history.push('./crud');
+  const empData = () => {
+    props.history.push('./employee');
+  }
+
+  const cards = () => {
+    props.history.push('./cards');
   }
 
   return (
@@ -222,7 +226,8 @@ const MainPage = (props) => {
         keyboard={keyboard}
         addRemove={addRemove}
         calculator={calculator}
-        crud={crud}
+        empData={empData}
+        cards={cards}
       />
 
       <div style={{ marginLeft: 5 + '%' }}>
