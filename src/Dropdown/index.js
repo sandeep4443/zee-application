@@ -6,7 +6,7 @@ import MultiSelect from './MultiSelectDropDown';
 
 const AllDropDowns = ({ dropDown }) => (
     <>
-        <DropDownPopulate dropDown={ dropDown } />
+        <DropDownPopulate dropDown={dropDown} />
         <CascadingDropDown />
         <MultiSelect />
     </>
@@ -16,5 +16,5 @@ export default AllDropDowns;
 
 
 AllDropDowns.propTypes = {
-    dropDown:PropTypes.func
-  }
+    dropDown: PropTypes.func
+}

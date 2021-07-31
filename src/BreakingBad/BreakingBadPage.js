@@ -3,6 +3,8 @@ import axios from 'axios';
 import Header from './Header';
 import Search from './Search';
 import Characters from './Characters/CharacterGrid';
+import image from '../img/bg.jpg';
+import './BreakingBad.css';
 
 const BreakingBadPage = () => {
     const [items, setItems] = useState([]);
@@ -18,7 +20,7 @@ const BreakingBadPage = () => {
         fetchItems();
     }, [query])
     return (
-        <div className="breaking">
+        <div className="breaking" style={{ backgroundImage: `url(${image})` }}>
             <Header />
             <Search getQuery={q => setQuery(q)} />
             <Characters items={items} isLoading={isLoading} />
