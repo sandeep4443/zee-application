@@ -19,7 +19,6 @@ const MainPage = () => {
         }
         fetchItems();
     }, [setItems])
-    console.log("items are", items);
     return (
         <div style={{ backgroundColor: 'lightblue' }} className="breaking">
             <Header />
