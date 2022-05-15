@@ -19,7 +19,7 @@
 
 #myInput {
   box-sizing: border-box;
-  background-image: url(/search.png);
+  background-image: url(./search.png);
   background-size: contain;
   background-position: 14px 3px 0px -3px;
   background-repeat: no-repeat;
