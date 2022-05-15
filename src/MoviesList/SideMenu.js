@@ -14,7 +14,8 @@ const SideMenu = ({
     addRemove,
     calculator,
     empData,
-    cards
+    cards,
+    iplFixtures
 }) => {
     return (
         <>
@@ -36,6 +37,7 @@ const SideMenu = ({
                         <a><li className="darkerlishadow" href="#" onClick={carousel}><i className="fa fa-car"></i><span className="nav-text">Carousel</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={cards}><i className="fa fa-address-card"></i><span className="nav-text">Cards</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={styles}><i className="fa fa-wrench"></i><span className="nav-text">Styles</span></li></a>
+                        <a><li className="darkerlishadow" href="#" onClick={iplFixtures}><i className="fa fa-soccer-ball-o"></i><span className="nav-text">IPL Fixtures</span></li></a>
                         <li className="darkerlishadow">
                             <a href="http://startific.com">
                                 <i className="fa fa-heart-o fa-lg"></i>

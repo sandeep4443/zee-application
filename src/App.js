@@ -18,6 +18,7 @@ import Users from './AddUser/User';
 import Carousel from './Carousel/Carousel';
 import Employee from './EmployeeData/MainPage';
 import Card from './Cards/Card';
+import IplFixtures from './IplFixtures';
 
 
 const App = () => (
@@ -39,6 +40,7 @@ const App = () => (
         <Route path="/carousel" exact strict component={Carousel} />
         <Route path="/employee" exact strict component={Employee} />
         <Route path="/cards" exact strict component={Card} />
+        <Route path="/fixtures" exact strict component={IplFixtures} />
     </Router>
 );
 export default App;

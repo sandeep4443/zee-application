@@ -9,7 +9,7 @@ import SideMenu from './SideMenu';
 import '../App.css';
 
 
-const MainPage = (props) => {
+const MainPage = ({history}) => {
 
   const movieInfo = useSelector(state => state.listInfoReducer.moviesInfo);
 
@@ -91,9 +91,9 @@ const MainPage = (props) => {
     });
     const duplicateMoviesList = moviesList.reduce((acc, curr) => {
       if (acc[curr.Title]) {
-        acc[curr.Title] = ++acc[curr.Title];
-      } else {
         acc[curr.Title] = 1;
+      } else {
+        acc[curr.Title] =  ++acc[curr.Title];
       }
       return acc;
     }, {});
@@ -156,58 +156,62 @@ const MainPage = (props) => {
   };
 
   const checkbox = () => {
-    props.history.push('/checkBoxes');
+    history.push('/checkBoxes');
   };
 
   const dropDown = () => {
-    props.history.push('/dropDowns');
+    history.push('/dropDowns');
   };
 
   const keyboard = () => {
-    props.history.push('/keyboard');
+    history.push('/keyboard');
   };
 
   const hooks = () => {
-    props.history.push('/hooks');
+    history.push('/hooks');
   };
 
   const breakingBad = () => {
-    props.history.push('/breakingBad');
+    history.push('/breakingBad');
   }
 
   const addRemove = () => {
-    props.history.push('/addRemove');
+    history.push('/addRemove');
   }
 
   const genre = () => {
-    props.history.push('/genres');
+    history.push('/genres');
   }
 
   const calculator = () => {
-    props.history.push('/calculator');
+    history.push('/calculator');
   }
 
   const expenses = () => {
-    props.history.push('/expenses');
+    history.push('/expenses');
   }
 
   const styles = () => {
-    props.history.push('/styles');
+    history.push('/styles');
   }
 
   const addUser = () => {
-    props.history.push('/addUser')
+    history.push('/addUser')
   }
 
   const carousel = () => {
-    props.history.push('/carousel');
+    history.push('/carousel');
   }
   const empData = () => {
-    props.history.push('./employee');
+    history.push('./employee');
   }
 
   const cards = () => {
-    props.history.push('./cards');
+    history.push('./cards');
+  }
+
+  const iplFixtures = () => {
+    history.push('./fixtures');
   }
 
   return (
@@ -228,6 +232,7 @@ const MainPage = (props) => {
         calculator={calculator}
         empData={empData}
         cards={cards}
+        iplFixtures={iplFixtures}
       />
 
       <div style={{ marginLeft: 5 + '%' }}>
