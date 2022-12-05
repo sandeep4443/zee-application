@@ -34,7 +34,6 @@ const SideMenu = ({
                         <a><li className="darkerlishadow" href="#" onClick={keyboard}><i className="fa fa-keyboard-o"></i><span className="nav-text">KeyBoard</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={addRemove}><i className="fa fa-remove"></i><span className="nav-text">Add Remove</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={calculator}><i className="fa fa-calculator"></i><span className="nav-text">Calculator</span></li></a>
-                        <a><li className="darkerlishadow" href="#" onClick={carousel}><i className="fa fa-car"></i><span className="nav-text">Carousel</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={cards}><i className="fa fa-address-card"></i><span className="nav-text">Cards</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={styles}><i className="fa fa-wrench"></i><span className="nav-text">Styles</span></li></a>
                         <a><li className="darkerlishadow" href="#" onClick={iplFixtures}><i className="fa fa-soccer-ball-o"></i><span className="nav-text">IPL Fixtures</span></li></a>
