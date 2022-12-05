@@ -1,0 +1,37 @@
+[
+    {
+        "index": 1,
+        "rank": 1,
+        "team": "Mumbai Indians",
+        "teamName": "MI",
+        "ground": " Mumbai Ground"
+    },
+    {
+        "index": 2,
+        "rank": 3,
+        "team": "KOLKATA KNIGHT RIDERS",
+        "teamName": "KKR",
+        "ground": "Eden Gardens"
+    },
+    {
+        "index": 3,
+        "rank": 5,
+        "team": "RAJASTAN ROYALS",
+        "teamName": "RR",
+        "ground": "Rajastan Ground"
+    },
+    {
+        "index": 4,
+        "rank": 7,
+        "team": "DELHI CAPITALS",
+        "teamName": "DC",
+        "ground": "Delhi Ground"
+    },
+    {
+        "index": 5,
+        "rank": 9,
+        "team": "LUCKNOW SUPER GIANTS",
+        "teamName": "LSG",
+        "ground": "Lucknow Ground"
+    }
+]

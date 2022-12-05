@@ -35,7 +35,7 @@ const MainPage = ({history}) => {
 
   useEffect(() => {
     setMovieInfo(movieInfo.slice(0, 20));
-  }, []);
+  }, [movieInfo]);
 
   const findMovies = e => {
     const findValue = e.target.value;
@@ -198,10 +198,6 @@ const MainPage = ({history}) => {
   const addUser = () => {
     history.push('/addUser')
   }
-
-  const carousel = () => {
-    history.push('/carousel');
-  }
   const empData = () => {
     history.push('./employee');
   }
@@ -218,7 +214,6 @@ const MainPage = ({history}) => {
     <>
 
       <SideMenu
-        carousel={carousel}
         addUser={addUser}
         styles={styles}
         expenses={expenses}
