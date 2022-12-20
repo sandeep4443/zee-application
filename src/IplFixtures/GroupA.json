@@ -5,6 +5,7 @@
         "team": "Mumbai Indians",
         "teamName": "MI",
         "venue": " Mumbai Ground"
+        "ground": " Mumbai Ground"
     },
     {
         "index": 2,
@@ -12,6 +13,7 @@
         "team": "KOLKATA KNIGHT RIDERS",
         "teamName": "KKR",
         "venue": "Eden Gardens"
+        "ground": "Eden Gardens"
     },
     {
         "index": 3,
@@ -19,6 +21,7 @@
         "team": "RAJASTAN ROYALS",
         "teamName": "RR",
         "venue": "Rajastan Ground"
+        "ground": "Rajastan Ground"
     },
     {
         "index": 4,
@@ -26,6 +29,7 @@
         "team": "DELHI CAPITALS",
         "teamName": "DC",
         "venue": "Delhi Ground"
+        "ground": "Delhi Ground"
     },
     {
         "index": 5,
@@ -33,5 +37,6 @@
         "team": "LUCKNOW SUPER GIANTS",
         "teamName": "LSG",
         "venue": "Lucknow Ground"
+        "ground": "Lucknow Ground"
     }
 ]
