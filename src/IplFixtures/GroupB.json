@@ -4,34 +4,34 @@
         "rank": 2,
         "team": "CHENNAI SUPER KINGS",
         "teamName": "CSK",
-        "ground": "Chennai Ground"
+        "venue": "Chennai Ground"
     },
     {
         "index": 2,
         "rank": 4,
         "team": "SUNRISERS HYDERABAD",
         "teamName": "SRH",
-        "ground": "Hyderabad Ground"
+        "venue": "Hyderabad Ground"
     },
     {
         "index": 3,
         "rank": 6,
         "team": "ROYAL CHALLENGERS BANGALORE",
         "teamName": "RCB",
-        "ground": "Bangalore Ground"
+        "venue": "Bangalore Ground"
     },
     {
         "index": 4,
         "rank": 8,
         "team": "PUNJAB KINGS",
         "teamName": "PBK",
-        "ground": "Punjab Ground"
+        "venue": "Punjab Ground"
     },
     {
         "index": 5,
         "rank": 10,
         "team": "GUJARAT TITANS",
         "teamName": "GJ",
-        "ground": "Narendra Modi Stadium"
+        "venue": "Narendra Modi Stadium"
     }
 ]

@@ -91,9 +91,9 @@ const MainPage = ({history}) => {
     });
     const duplicateMoviesList = moviesList.reduce((acc, curr) => {
       if (acc[curr.Title]) {
-        acc[curr.Title] = 1;
+        acc[curr.Title] = ++acc[curr.Title];
       } else {
-        acc[curr.Title] =  ++acc[curr.Title];
+        acc[curr.Title] = 1;
       }
       return acc;
     }, {});
